@@ -1,76 +1,82 @@
-import type { TaskModel } from 'commonTypesWithClient/models';
 import { useAtom } from 'jotai';
-import type { ChangeEvent, FormEvent } from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
-import { apiClient } from 'src/utils/apiClient';
-import { returnNull } from 'src/utils/returnNull';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
-  const [tasks, setTasks] = useState<TaskModel[]>();
-  const [label, setLabel] = useState('');
-  const inputLabel = (e: ChangeEvent<HTMLInputElement>) => {
-    setLabel(e.target.value);
-  };
-  const fetchTasks = async () => {
-    const tasks = await apiClient.tasks.$get().catch(returnNull);
+  const [title, setTitle] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [details, setDetails] = useState('');
+  const [location, setLocation] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [generatedURL, setGeneratedURL] = useState('');
 
-    if (tasks !== null) setTasks(tasks);
-  };
-  const createTask = async (e: FormEvent) => {
-    e.preventDefault();
-    if (!label) return;
-
-    await apiClient.tasks.post({ body: { label } });
-    setLabel('');
-    await fetchTasks();
-  };
-  const toggleDone = async (task: TaskModel) => {
-    await apiClient.tasks._taskId(task.id).patch({ body: { done: !task.done } });
-    await fetchTasks();
-  };
-  const deleteTask = async (task: TaskModel) => {
-    await apiClient.tasks._taskId(task.id).delete();
-    await fetchTasks();
+  const generateURL = () => {
+    const baseURL = "BEGIN:VCALENDAR\nVERSION:2.0\n";
+    const event = `BEGIN:VEVENT\nSUMMARY:${title}\nDTSTART:${startDate}T${startTime}00Z\nDTEND:${endDate}T${endTime}00Z\nDESCRIPTION:${details}\nLOCATION:${location}\nEND:VEVENT\n`;
+    const endCalendar = "END:VCALENDAR";
+  
+    const iCalendarData = baseURL + event + endCalendar;
+    const encodedData = encodeURIComponent(iCalendarData);
+  
+    const link = document.createElement("a");
+    link.setAttribute("href", `data:text/calendar;charset=utf-8,${  encodedData}`);
+    link.setAttribute("download", "event.ics");
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
-  useEffect(() => {
-    fetchTasks();
-  }, []);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Handle form submission here
+  };
 
-  if (!tasks || !user) return <Loading visible />;
+  if (!user) return <Loading visible />;
 
   return (
     <>
       <BasicHeader user={user} />
-      <div className={styles.title} style={{ marginTop: '160px' }}>
-        Welcome to frourio
+      <div className={styles.container}>
+        <form onSubmit={handleSubmit}>
+          <div className={styles.formGroup}>
+            <label htmlFor="title">Title</label>
+            <input type="text" className={styles.labels} value={title} onChange={(e) => setTitle(e.target.value)} />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="startDate">Start Date</label>
+            <input type="date" className={styles.labels} value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="startTime">Start Time</label>
+            <input type="time" className={styles.labels} value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="endDate">End Date</label>
+            <input type="date" className={styles.labels} value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="endTime">End Time</label>
+            <input type="time" className={styles.labels} value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="details">Details</label>
+            <textarea className={styles.labels} rows={3} value={details} onChange={(e) => setDetails(e.target.value)} />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="location">Location</label>
+            <input type="text" className={styles.labels} value={location} onChange={(e) => setLocation(e.target.value)} />
+          </div>
+          <button className={styles.submitButton} type="submit" onClick={generateURL}>URL生成</button>
+        </form>
       </div>
 
-      <form style={{ textAlign: 'center', marginTop: '80px' }} onSubmit={createTask}>
-        <input value={label} type="text" onChange={inputLabel} />
-        <input type="submit" value="ADD" />
-      </form>
-      <ul className={styles.tasks}>
-        {tasks.map((task) => (
-          <li key={task.id}>
-            <label>
-              <input type="checkbox" checked={task.done} onChange={() => toggleDone(task)} />
-              <span>{task.label}</span>
-            </label>
-            <input
-              type="button"
-              value="DELETE"
-              className={styles.deleteBtn}
-              onClick={() => deleteTask(task)}
-            />
-          </li>
-        ))}
-      </ul>
     </>
   );
 };
