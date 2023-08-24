@@ -13,3 +13,16 @@ export type TaskModel = {
   done: boolean;
   created: number;
 };
+
+export type CalendarModel = {
+  id: UserId;
+  appoid: string;
+  title: string;
+  details: string;
+  location: string;
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
+  createdAt: string;
+};

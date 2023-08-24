@@ -5,7 +5,7 @@ import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 import Link from 'next/link';
-
+import { apiClient } from 'src/utils/apiClient';
 const Home = () => {
   
   const [user] = useAtom(userAtom);
@@ -18,16 +18,31 @@ const Home = () => {
   const [endTime, setEndTime] = useState('');
   const [url, setUrl] = useState('');
 
-  const generateURL = () => {
+  const generateURL = async () => {
     // 各フォームの値を使用してiCalendarデータを生成
     const baseURL = "BEGIN:VCALENDAR\nVERSION:2.0\n";
     const event = `BEGIN:VEVENT\nSUMMARY:${title}\nDTSTART:${startDate}T${startTime}+0900\nDTEND:${endDate}T${endTime}+0900\nDESCRIPTION:${details}\nLOCATION:${location}\nEND:VEVENT\n`;
     const endCalendar = "END:VCALENDAR";
 
-    const iCalendarData = baseURL + event + endCalendar;
-    const encodedData = encodeURIComponent(iCalendarData);
-    setUrl(`http://localhost:3000/calendar?data=${encodeURIComponent(`data:text/calendar;charset=utf-8,${encodedData}`)}`);
+    // const iCalendarData = baseURL + event + endCalendar;
+    // const encodedData = encodeURIComponent(iCalendarData);
+    // setUrl(`http://localhost:3000/calendar?data=${encodeURIComponent(`data:text/calendar;charset=utf-8,${encodedData}`)}`);
+    const randomId = 'asodaskodaslfdasfasfs'
+    setUrl(`http://localhost:3000/calendar/${randomId}`);
     // 生成したiCalendarデータを含むURLを返す
+    await apiClient.calendar.post({
+      body: {
+        appoid: randomId,
+        title,
+        startDate,
+        endDate,
+        details,
+        location,
+        startTime,
+        endTime,
+        createdAt: new Date(),
+      }
+    })
     return ;
   };
 
@@ -87,6 +102,17 @@ const Home = () => {
         {/* リンクを表示してワンクリックでコピー出来るようにする */}
         <div>
           <input type="text" value={url} className={styles.url} readOnly />
+          <button onClick={handleCopyClick}>Copy</button>
+        </div>
+        {/* 他人に送りやすいようにメッセージにurlを混ぜて出力する、それもコピーできるようにする */}
+        <div>
+          <textarea className={styles.message} value={`
+          タイトル：${title}\n
+          開始：${startDate} ${startTime}\n
+          終了：${endDate} ${endTime}\n
+          場所：${location}\n
+          詳細：${details}\n
+          URL：${url}`} readOnly />
           <button onClick={handleCopyClick}>Copy</button>
         </div>
         

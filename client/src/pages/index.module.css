@@ -50,3 +50,8 @@
   font-size: 14px;
   color: #999;
 }
+
+.message {
+  height: 100px;
+  width: 300px;
+}
