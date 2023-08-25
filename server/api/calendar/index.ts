@@ -3,7 +3,10 @@ import type { DefineMethods } from 'aspida';
 
 export type Methods = DefineMethods<{
   get: {
-    resBody: string;
+    resBody: CalendarModel|null;
+    query:{
+      appoid: string;
+    }
   };
   post: {
     reqBody: {

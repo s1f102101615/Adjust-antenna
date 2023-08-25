@@ -27,7 +27,7 @@ const Home = () => {
     // const iCalendarData = baseURL + event + endCalendar;
     // const encodedData = encodeURIComponent(iCalendarData);
     // setUrl(`http://localhost:3000/calendar?data=${encodeURIComponent(`data:text/calendar;charset=utf-8,${encodedData}`)}`);
-    const randomId = 'asodaskodaslfdasfasfs'
+    const randomId = 'asodasksfs'
     setUrl(`http://localhost:3000/calendar/${randomId}`);
     // 生成したiCalendarデータを含むURLを返す
     await apiClient.calendar.post({

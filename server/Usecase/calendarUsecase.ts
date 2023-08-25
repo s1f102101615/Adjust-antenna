@@ -26,7 +26,6 @@ export const calendarUsecase = {
       location,
       createdAt,
     };
-    console.log(calendar);
     await calendarRepository.save(calendar);
 
     return 'ok';
