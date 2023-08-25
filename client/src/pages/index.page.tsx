@@ -6,6 +6,8 @@ import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 import Link from 'next/link';
 import { apiClient } from 'src/utils/apiClient';
+import { v4 as uuidv4 } from 'uuid';
+
 const Home = () => {
   
   const [user] = useAtom(userAtom);
@@ -17,18 +19,14 @@ const Home = () => {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [url, setUrl] = useState('');
+  const [urlarea, setUrlarea] = useState('');
 
   const generateURL = async () => {
-    // 各フォームの値を使用してiCalendarデータを生成
-    const baseURL = "BEGIN:VCALENDAR\nVERSION:2.0\n";
-    const event = `BEGIN:VEVENT\nSUMMARY:${title}\nDTSTART:${startDate}T${startTime}+0900\nDTEND:${endDate}T${endTime}+0900\nDESCRIPTION:${details}\nLOCATION:${location}\nEND:VEVENT\n`;
-    const endCalendar = "END:VCALENDAR";
+    // randomIdを生成する
+    const randomId = uuidv4();
 
-    // const iCalendarData = baseURL + event + endCalendar;
-    // const encodedData = encodeURIComponent(iCalendarData);
-    // setUrl(`http://localhost:3000/calendar?data=${encodeURIComponent(`data:text/calendar;charset=utf-8,${encodedData}`)}`);
-    const randomId = 'asodasksfs'
     setUrl(`http://localhost:3000/calendar/${randomId}`);
+    setUrlarea(`タイトル：${title}\n開始：${startDate} ${startTime}\n終了：${endDate} ${endTime}\n場所：${location}\n詳細：${details}\nURL：${url}`)
     // 生成したiCalendarデータを含むURLを返す
     await apiClient.calendar.post({
       body: {
@@ -60,6 +58,15 @@ const Home = () => {
     }
   };
 
+  const handleUrlCopyClick = async () => {
+    try {
+      await navigator.clipboard.writeText(urlarea);
+      console.log('URL copied to clipboard');
+    } catch (err) {
+      console.error('Failed to copy URL: ', err);
+    }
+  }
+
   if (!user) return <Loading visible />;
 
   return (
@@ -67,53 +74,41 @@ const Home = () => {
       <BasicHeader user={user} />
       <div className={styles.container}>
         <form onSubmit={handleSubmit}>
+          {/* 各フォームグループをまとめてスタイリッシュに表示 */}
           <div className={styles.formGroup}>
             <label htmlFor="title">Title</label>
-            <input type="text" className={styles.labels} value={title} onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="startDate">Start Date</label>
-            <input type="date" className={styles.labels} value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="startTime">Start Time</label>
-            <input type="time" className={styles.labels} value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+            <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            <input type="time" value={startTime} onChange={(e) => setStartTime(e.target.value)} />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="endDate">End Date</label>
-            <input type="date" className={styles.labels} value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-          </div>
-          <div className={styles.formGroup}>
-            <label htmlFor="endTime">End Time</label>
-            <input type="time" className={styles.labels} value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            <input type="time" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="details">Details</label>
-            <textarea className={styles.labels} rows={3} value={details} onChange={(e) => setDetails(e.target.value)} />
+            <textarea rows={3} value={details} onChange={(e) => setDetails(e.target.value)} />
           </div>
           <div className={styles.formGroup}>
             <label htmlFor="location">Location</label>
-            <input type="text" className={styles.labels} value={location} onChange={(e) => setLocation(e.target.value)} />
+            <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} />
           </div>
           <button className={styles.submitButton} type="submit" onClick={generateURL}>URL生成</button>
-          
-        </form>
-        <div><Link href={url} >aaa</Link></div>
+      </form>
         {/* リンクを表示してワンクリックでコピー出来るようにする */}
         <div>
           <input type="text" value={url} className={styles.url} readOnly />
           <button onClick={handleCopyClick}>Copy</button>
+          <button><Link href={url} >リンクに飛ぶ</Link></button>
         </div>
         {/* 他人に送りやすいようにメッセージにurlを混ぜて出力する、それもコピーできるようにする */}
         <div>
-          <textarea className={styles.message} value={`
-          タイトル：${title}\n
-          開始：${startDate} ${startTime}\n
-          終了：${endDate} ${endTime}\n
-          場所：${location}\n
-          詳細：${details}\n
-          URL：${url}`} readOnly />
-          <button onClick={handleCopyClick}>Copy</button>
+          <textarea className={styles.message} value={urlarea} readOnly />
+          <button onClick={handleUrlCopyClick}>Copy</button>
         </div>
         
 
