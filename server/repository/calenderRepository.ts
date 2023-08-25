@@ -1,25 +1,24 @@
-import { prismaClient } from '$/service/prismaClient';
 import type { CalendarModel } from '$/commonTypesWithClient/models';
 import { userIdParser } from '$/service/idParsers';
+import { prismaClient } from '$/service/prismaClient';
 export const calendarRepository = {
-  save: async ( calendar: CalendarModel ) => {
+  save: async (calendar: CalendarModel) => {
     await prismaClient.calendar.upsert({
       where: {
         appoid: calendar.id,
       },
-      update: {
-      },  
+      update: {},
       create: {
-      id: calendar.id,
-      appoid: calendar.appoid,
-      title: calendar.title,
-      startDate: calendar.startDate,
-      startTime: calendar.startTime,
-      endDate: calendar.endDate,
-      endTime: calendar.endTime,
-      details: calendar.details,
-      location: calendar.location,
-      createdAt: calendar.createdAt,
+        id: calendar.id,
+        appoid: calendar.appoid,
+        title: calendar.title,
+        startDate: calendar.startDate,
+        startTime: calendar.startTime,
+        endDate: calendar.endDate,
+        endTime: calendar.endTime,
+        details: calendar.details,
+        location: calendar.location,
+        createdAt: calendar.createdAt,
       },
     });
   },
