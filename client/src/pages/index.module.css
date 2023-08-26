@@ -1,5 +1,5 @@
 .container {
-  width: 300px;
+  width: 50%;
   padding: 20px;
   margin: 0 auto;
   border: 1px solid #ccc;
@@ -7,6 +7,18 @@
 }
 
 .formGroup {
+  display: flex;
+  flex-direction: column; /* 縦並びにする */
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+}
+
+.formGrouptime {
+  display: flex;
+  flex-direction: column; /* 縦並びにする */
+  align-items: center;
+  justify-content: flex-start;
   margin-bottom: 15px;
 }
 
@@ -27,7 +39,10 @@
 }
 
 .submitButton {
+  justify-content: center;
+  width : 100%;
   padding: 8px 15px;
+  margin-top: 40px;
   color: white;
   cursor: pointer;
   background-color: #007bff;
@@ -48,4 +63,71 @@
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
+}
+
+.labelname {
+  width: 100%; 
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ccc;
+}
+
+.navigate {
+  font-size : 1.2em;
+  font-weight: bold;
+  color: #494949;
+}
+
+.inputtitle {
+  width: 90%;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.inputer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.memoarea {
+  width: 90%;
+  height: 100px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.navigatememo {
+  margin-top: 20px;
+  font-size : 1.2em;
+  font-weight: bold;
+  color: #494949;
+}
+
+.navigatestart {
+  font-size : 0.9em;
+  font-weight: bold;
+  color: #666;
+}
+
+.navigateend {
+  font-size : 0.9em;
+  font-weight: bold;
+  color: #494949;
+}
+
+.date {
+  width: 100%; 
+  font-size: 1.6em;
+  color: #333;
+}
+
+.time {
+  width: 100%;
+  font-size: 1.6em;
+  color: #333;
 }

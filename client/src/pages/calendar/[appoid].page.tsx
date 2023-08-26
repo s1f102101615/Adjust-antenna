@@ -52,6 +52,7 @@ const Calendar = () => {
     <>
       <BasicHeader user={user} />
       <div>{nowEvent?.appoid}</div>
+      <div>pcでアクセスした場合カレンダーに追加するためのデータをDLしています(8KB程)</div>
     </>
   );
 };

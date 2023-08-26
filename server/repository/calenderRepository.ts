@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import type { CalendarModel } from '$/commonTypesWithClient/models';
 import { userIdParser } from '$/service/idParsers';
 import { prismaClient } from '$/service/prismaClient';
@@ -22,7 +23,6 @@ export const calendarRepository = {
       },
     });
   },
-  // eslint-disable-next-line complexity
   findEvent: async (query: { appoid: string }) => {
     // apoidを受け取って、そのappoidのカレンダーを返す calendarModelを返す
     const calendar = await prismaClient.calendar.findUnique({
