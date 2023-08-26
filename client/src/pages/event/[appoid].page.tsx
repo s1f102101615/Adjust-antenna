@@ -38,7 +38,13 @@ const Event = () => {
       setLocation(nowEvent?.location);
       setStartTime(nowEvent?.startTime);
       setEndTime(nowEvent?.endTime);
-      setUrlarea(`タイトル：${title}\n開始：${nowEvent?.startDate} ${nowEvent?.startTime}\n終了：${nowEvent?.endDate} ${nowEvent?.endTime}\n場所：${nowEvent?.location}\n詳細：${nowEvent?.details}\nURL：${`http://localhost:3000/calendar/${appoid}`}`);
+      setUrlarea(
+        `タイトル：${title}\n開始：${nowEvent?.startDate} ${nowEvent?.startTime}\n終了：${
+          nowEvent?.endDate
+        } ${nowEvent?.endTime}\n場所：${nowEvent?.location}\n詳細：${
+          nowEvent?.details
+        }\nURL：${`http://localhost:3000/calendar/${appoid}`}`
+      );
       setUrl(`http://localhost:3000/calendar/${appoid}`);
     };
     fetchEvent();
@@ -79,14 +85,18 @@ const Event = () => {
           <div className={styles.timearound}>
             <div className={styles.starttime}>
               <div className={styles.timedetail}>開始</div>
-              <div className={styles.time}>{startDate} {startTime}</div>
+              <div className={styles.time}>
+                {startDate} {startTime}
+              </div>
             </div>
             <div className={styles.to}> ~</div>
             <div className={styles.endtime}>
               <div className={styles.titledetail}>終了</div>
-              <div className={styles.time}>{endDate} {endTime}</div>
+              <div className={styles.time}>
+                {endDate} {endTime}
+              </div>
             </div>
-          </div>  
+          </div>
           <div className={styles.locationaround}>
             <div className={styles.locationdetail}>場所</div>
             <div className={styles.location}>{location}</div>
@@ -94,7 +104,7 @@ const Event = () => {
           <div className={styles.detailaround}>
             <div className={styles.detailofdetail}>イベントの詳細</div>
             <div className={styles.detail}>{details}</div>
-            </div>
+          </div>
         </div>
       </div>
       <div className={styles.urlzone}>
@@ -109,7 +119,6 @@ const Event = () => {
           <button onClick={handleCopyUrlArea}>Copy</button>
         </div>
       </div>
-
     </>
   );
 };

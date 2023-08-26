@@ -21,21 +21,23 @@ const Home = () => {
     // randomIdを生成する
     const randomId = uuidv4();
     // 生成したiCalendarデータを含むURLを返す
-    await apiClient.calendar.post({
-      body: {
-        appoid: randomId,
-        title,
-        startDate,
-        endDate,
-        details,
-        location,
-        startTime,
-        endTime,
-        createdAt: new Date(),
-      },
-    }).then(() => {
-      window.location.href = `http://localhost:3000/event/${randomId}`;
-    });
+    await apiClient.calendar
+      .post({
+        body: {
+          appoid: randomId,
+          title,
+          startDate,
+          endDate,
+          details,
+          location,
+          startTime,
+          endTime,
+          createdAt: new Date(),
+        },
+      })
+      .then(() => {
+        window.location.href = `http://localhost:3000/event/${randomId}`;
+      });
     return;
   };
 
@@ -43,7 +45,6 @@ const Home = () => {
     event.preventDefault();
     // Handle form submission here
   };
-
 
   if (!user) return <Loading visible />;
 
@@ -56,16 +57,44 @@ const Home = () => {
           {/* 各フォームグループをまとめてスタイリッシュに表示 */}
           <div className={styles.inputer}>
             <div className={styles.formGroup}>
-              <label htmlFor="title" className={styles.navigate}>1.タイトルを入力</label>
-              <input className={styles.inputtitle} type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-              <label htmlFor="details" className={styles.navigatememo}>メモ書き込む(任意)</label>
-              <textarea className={styles.memoarea} rows={3} value={details} onChange={(e) => setDetails(e.target.value)} />
+              <label htmlFor="title" className={styles.navigate}>
+                1.タイトルを入力
+              </label>
+              <input
+                className={styles.inputtitle}
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <label htmlFor="details" className={styles.navigatememo}>
+                メモ書き込む(任意)
+              </label>
+              <textarea
+                className={styles.memoarea}
+                rows={3}
+                value={details}
+                onChange={(e) => setDetails(e.target.value)}
+              />
             </div>
             <div className={styles.formGrouptime}>
-              <label htmlFor="startDate" className={styles.navigate}>2.時間を入力する</label> 
-              <label htmlFor="startDate" className={styles.navigatestart}>開始時間</label> 
-              <input type="date" className={styles.date} value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-              <input type="time" className={styles.time} value={startTime} onChange={(e) => setStartTime(e.target.value)} />
+              <label htmlFor="startDate" className={styles.navigate}>
+                2.時間を入力する
+              </label>
+              <label htmlFor="startDate" className={styles.navigatestart}>
+                開始時間
+              </label>
+              <input
+                type="date"
+                className={styles.date}
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+              <input
+                type="time"
+                className={styles.time}
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+              />
               {/* <div className="date-time-picker">
                 <input
                   type="datetime-local"
@@ -73,13 +102,32 @@ const Home = () => {
                   onChange={(e) => setStartDate(e.target.value)}
                 />
               </div> */}
-              <label htmlFor="startDate" className={styles.navigateend}>終了時間</label> 
-              <input type="date" className={styles.date} value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-              <input type="time" className={styles.time} value={endTime} onChange={(e) => setEndTime(e.target.value)} />
+              <label htmlFor="startDate" className={styles.navigateend}>
+                終了時間
+              </label>
+              <input
+                type="date"
+                className={styles.date}
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+              <input
+                type="time"
+                className={styles.time}
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+              />
             </div>
             <div className={styles.formGroup}>
-              <label htmlFor="location" className={styles.navigate}>場所を書き込む(任意)</label>
-              <input type="text" className={styles.inputtitle} value={location} onChange={(e) => setLocation(e.target.value)} />
+              <label htmlFor="location" className={styles.navigate}>
+                場所を書き込む(任意)
+              </label>
+              <input
+                type="text"
+                className={styles.inputtitle}
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+              />
             </div>
           </div>
           <button className={styles.submitButton} type="submit" onClick={generateURL}>

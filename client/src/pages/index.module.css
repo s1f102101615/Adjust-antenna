@@ -7,19 +7,19 @@
 }
 
 .formGroup {
-  margin-bottom: 15px;
   display: flex;
   flex-direction: column; /* 縦並びにする */
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 15px;
 }
 
 .formGrouptime {
-  margin-bottom: 15px;
   display: flex;
   flex-direction: column; /* 縦並びにする */
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 15px;
 }
 
 .label {
@@ -39,7 +39,10 @@
 }
 
 .submitButton {
+  justify-content: center;
+  width : 100%;
   padding: 8px 15px;
+  margin-top: 40px;
   color: white;
   cursor: pointer;
   background-color: #007bff;
@@ -62,25 +65,25 @@
   border-radius: 3px;
 }
 
-.labelname { 
+.labelname {
+  width: 100%; 
   font-size: 1.7em;
-  color: #333;
   font-weight: bold;
+  color: #333;
   border-bottom: 1px solid #ccc;
-  width: 100%;
 }
 
 .navigate {
-  color: #494949;
   font-size : 1.2em;
   font-weight: bold;
+  color: #494949;
 }
 
 .inputtitle {
-  font-size: 1.5em;
-  color: #333;
-  font-weight: bold;
   width: 90%;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
 }
 
 .inputer {
@@ -99,32 +102,32 @@
 }
 
 .navigatememo {
-  color: #494949;
+  margin-top: 20px;
   font-size : 1.2em;
   font-weight: bold;
-  margin-top: 20px;
+  color: #494949;
 }
 
 .navigatestart {
-  color: #666666;
   font-size : 0.9em;
   font-weight: bold;
+  color: #666;
 }
 
 .navigateend {
-  color: #494949;
   font-size : 0.9em;
   font-weight: bold;
+  color: #494949;
 }
 
-.date { 
+.date {
+  width: 100%; 
   font-size: 1.6em;
   color: #333;
-  width: 100%;
 }
 
 .time {
+  width: 100%;
   font-size: 1.6em;
   color: #333;
-  width: 100%;
 }

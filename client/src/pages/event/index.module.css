@@ -1,52 +1,53 @@
 .urlinput{
-  height: 2.4em;
   width: 900px;
+  height: 2.4em;
   padding: 0 16px;
-  border-radius: 4px;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 17px;
   border: none;
+  border-radius: 4px;
   box-shadow: 0 0 0 1px #ccc inset;
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  font-size: 17px;
-  font-family:'Courier New', Courier, monospace;
+  appearance: none;
+  appearance: none;
 }
+
 .urlarea{
   display: block;
   width: 500px;
   height: 180px;
   padding: 4px 16px;
-  border-radius: 4px;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 17px;
   border: none;
+  border-radius: 4px;
   box-shadow: 0 0 0 1px #ccc inset;
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  font-size: 17px;
-  font-family:'Courier New', Courier, monospace;
+  appearance: none;
+  appearance: none;
 }
 
 .titledetail {
-  font-size: 1em;
-  color: #747474;
-  font-weight: bold;
   width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  color: #747474;
 }
 
 .title {
-  font-size: 1.7em;
-  color: #333;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
   width: 100%;
+  font-size: 1.7em;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #ccc;
 }
 
 .titlearound {
-  width: 100%;
   display: flex;
   flex-direction: column; /* 縦並びにする */
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   margin-top: 50px;
 }
 
@@ -55,54 +56,57 @@
 }
 
 .timearound {
-  width: 100%;
   display: flex;  
   flex-direction: row; /* 横並びにする */
-  justify-content: space-between; /* 左右に張り付ける */
   align-items: center;
+  justify-content: space-between; /* 左右に張り付ける */
+  width: 100%;
   margin-top: 20px;
 }
 
 @media screen and (max-width: 1000px) {
   .timearound {
-    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
+    justify-content: flex-start;
+    width: 100%;
     margin-top: 20px;
   }
+
   .starttime {
     width: 100%;
   }
+
   .endtime {
     width: 100%;
     margin-top: 18px;
   }
+
   .to {
     display: none;
   }
 }
 
 .to {
+  margin-top:7px;
   font-size:35px;
   font-weight:bold;
-  margin-top:7px;
 }
 
 .timedetail {
-  font-size: 1em;
-  color: #747474;
-  font-weight: bold;
   width: 60%;
+  font-size: 1em;
+  font-weight: bold;
+  color: #747474;
 }
 
 .time {
-  font-size: 1.5em;
-  color: #333;
-  font-weight: bold;
-  border-bottom: 1px solid #e0e0e0;
   width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .event {
@@ -111,71 +115,71 @@
 }
 
 .detailofdetail {
-  font-size: 1.2em;
-  color: #747474;
-  font-weight: bold;
   width: 100%;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #747474;
 }
 
 .detailaround {
-  width: 100%;
   display: flex;
   flex-direction: column; /* 縦並びにする */
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
   margin-top: 15px;
   margin-bottom: 100px;
 }
 
 .detail {
-  font-size: 1.0em;
-  color: #333;
-  font-weight: bold;
   width: 100%;
+  font-size: 1.0em;
+  font-weight: bold;
+  color: #333;
 }
 
 .locationaround {
-  width: 100%;
   align-items: center;
+  width: 100%;
   margin-top: 20px;
 }
 
 .locationdetail {
-  font-size: 1em;
-  color: #747474;
-  font-weight: bold;
   width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  color: #747474;
 }
 
 .location {
-  font-size: 1.5em;
-  color: #333;
-  font-weight: bold;
-  border-bottom: 1px solid #e0e0e0;
   width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .urlzone {
-  background-color: #f7f7f7;
-  width: 100%;
   display: flex;
   flex-direction: column; /* 縦並びにする */
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #f7f7f7;
 }
 
 .urldetail {
-  font-size: 1.5em;
-  color: #5a5a5a;
-  font-weight: bold;
   margin-top: 30px;
   margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #5a5a5a;
 }
 
 .urlmessagedetail {
-  font-size: 1.5em;
-  color: #5a5a5a;
-  font-weight: bold;
   margin-top: 30px;
   margin-bottom: 10px;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #5a5a5a;
 }
