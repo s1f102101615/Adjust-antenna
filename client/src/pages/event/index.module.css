@@ -25,3 +25,132 @@
   font-size: 17px;
   font-family:'Courier New', Courier, monospace;
 }
+
+.titledetail {
+  font-size: 1em;
+  color: #747474;
+  font-weight: bold;
+  width: 100%;
+}
+
+.title {
+  font-size: 1.7em;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+}
+
+.titlearound {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* 縦並びにする */
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.container {
+  width : 50%;
+}
+
+.timearound {
+  width: 100%;
+  display: flex;  
+  flex-direction: row; /* 横並びにする */
+  justify-content: space-between; /* 左右に張り付ける */
+  align-items: center;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1000px) {
+  .timearound {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .starttime {
+    width: 100%;
+  }
+  .endtime {
+    width: 100%;
+    margin-top: 18px;
+  }
+  .to {
+    display: none;
+  }
+}
+
+.to {
+  font-size:35px;
+  font-weight:bold;
+  margin-top:7px;
+}
+
+.timedetail {
+  font-size: 1em;
+  color: #747474;
+  font-weight: bold;
+  width: 60%;
+}
+
+.time {
+  font-size: 1.5em;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+}
+
+.event {
+  display: flex;
+  justify-content: center;
+}
+
+.detailofdetail {
+  font-size: 1.2em;
+  color: #747474;
+  font-weight: bold;
+  width: 100%;
+}
+
+.detailaround {
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* 縦並びにする */
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.detail {
+  font-size: 1.0em;
+  color: #333;
+  font-weight: bold;
+  width: 100%;
+}
+
+.locationaround {
+  width: 100%;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.locationdetail {
+  font-size: 1em;
+  color: #747474;
+  font-weight: bold;
+  width: 100%;
+}
+
+.location {
+  font-size: 1.5em;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+}

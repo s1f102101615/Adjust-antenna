@@ -70,13 +70,33 @@ const Event = () => {
   return (
     <>
       <BasicHeader user={user} />
-      <div>{title}</div>
-      <div>{startDate}</div>
-      <div>{startTime}</div>
-      <div>{endDate}</div>
-      <div>{endTime}</div>
-      <div>{details}</div>
-      <div>{location}</div>
+      <div className={styles.event}>
+        <div className={styles.container}>
+          <div className={styles.titlearound}>
+            <div className={styles.titledetail}>タイトル</div>
+            <div className={styles.title}>{title}</div>
+          </div>
+          <div className={styles.timearound}>
+            <div className={styles.starttime}>
+              <div className={styles.timedetail}>開始</div>
+              <div className={styles.time}>{startDate} {startTime}</div>
+            </div>
+            <div className={styles.to}> ~</div>
+            <div className={styles.endtime}>
+              <div className={styles.titledetail}>終了</div>
+              <div className={styles.time}>{endDate} {endTime}</div>
+            </div>
+          </div>  
+          <div className={styles.locationaround}>
+            <div className={styles.locationdetail}>場所</div>
+            <div className={styles.location}>{location}</div>
+          </div>
+          <div className={styles.detailaround}>
+            <div className={styles.detailofdetail}>イベントの詳細</div>
+            <div className={styles.detail}>{details}</div>
+            </div>
+        </div>
+      </div>
       <div>
         <input className={styles.urlinput} type="text" value={url} readOnly />
         <button onClick={handleCopyUrl}>Copy</button>

@@ -1,5 +1,4 @@
 import { useAtom } from 'jotai';
-import Link from 'next/link';
 import { useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
@@ -17,17 +16,10 @@ const Home = () => {
   const [location, setLocation] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
-  const [url, setUrl] = useState('');
-  const [urlarea, setUrlarea] = useState('');
 
   const generateURL = async () => {
     // randomIdを生成する
     const randomId = uuidv4();
-
-    setUrl(`http://localhost:3000/event/${randomId}`);
-    setUrlarea(
-      `タイトル：${title}\n開始：${startDate} ${startTime}\n終了：${endDate} ${endTime}\n場所：${location}\n詳細：${details}\nURL：${url}`
-    );
     // 生成したiCalendarデータを含むURLを返す
     await apiClient.calendar.post({
       body: {
@@ -41,6 +33,8 @@ const Home = () => {
         endTime,
         createdAt: new Date(),
       },
+    }).then(() => {
+      window.location.href = `http://localhost:3000/event/${randomId}`;
     });
     return;
   };
@@ -50,23 +44,6 @@ const Home = () => {
     // Handle form submission here
   };
 
-  const handleCopyClick = async () => {
-    try {
-      await navigator.clipboard.writeText(url);
-      console.log('URL copied to clipboard');
-    } catch (err) {
-      console.error('Failed to copy URL: ', err);
-    }
-  };
-
-  const handleUrlCopyClick = async () => {
-    try {
-      await navigator.clipboard.writeText(urlarea);
-      console.log('URL copied to clipboard');
-    } catch (err) {
-      console.error('Failed to copy URL: ', err);
-    }
-  };
 
   if (!user) return <Loading visible />;
 
@@ -102,19 +79,6 @@ const Home = () => {
             URL生成
           </button>
         </form>
-        {/* リンクを表示してワンクリックでコピー出来るようにする */}
-        <div>
-          <input type="text" value={url} className={styles.url} readOnly />
-          <button onClick={handleCopyClick}>Copy</button>
-          <button>
-            <Link href={url}>リンクに飛ぶ</Link>
-          </button>
-        </div>
-        {/* 他人に送りやすいようにメッセージにurlを混ぜて出力する、それもコピーできるようにする */}
-        <div>
-          <textarea className={styles.message} value={urlarea} readOnly />
-          <button onClick={handleUrlCopyClick}>Copy</button>
-        </div>
       </div>
     </>
   );
