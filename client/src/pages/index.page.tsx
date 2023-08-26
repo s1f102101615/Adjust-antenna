@@ -6,6 +6,12 @@ import { apiClient } from 'src/utils/apiClient';
 import { v4 as uuidv4 } from 'uuid';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
+interface Event {
+  id: number;
+  title: string;
+  date: string;
+  location: string;
+}
 
 const Home = () => {
   const [user] = useAtom(userAtom);
@@ -16,6 +22,13 @@ const Home = () => {
   const [location, setLocation] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+
+  //仮イベントデータ
+  const [events, setEvents] = useState<Event[]>([
+    { id: 1, title: 'イベント1', date: '2022-01-01', location: '東京' },
+    { id: 2, title: 'イベント2', date: '2022-02-01', location: '大阪' },
+    { id: 3, title: 'イベント3', date: '2022-03-01', location: '名古屋' },
+  ]);
 
   const generateURL = async () => {
     // randomIdを生成する
@@ -134,6 +147,20 @@ const Home = () => {
             URL生成
           </button>
         </form>
+      </div>
+      <div>
+        <div className={styles.oldtitle}>最近このブラウザで閲覧したイベント</div>
+        {events.map((event) => (
+          <li key={event.id} className={styles.eventCard}>
+            <div className={styles.eventInfo}>
+              <div className={styles.eventTitle}>{event.title}</div>
+              <div className={styles.eventDate}>{event.date}</div>
+              <div className={styles.eventLocation}>{event.location}</div>
+            </div>
+          </li>
+        ))}
+
+
       </div>
     </>
   );
