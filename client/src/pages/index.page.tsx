@@ -24,7 +24,7 @@ const Home = () => {
     // randomIdを生成する
     const randomId = uuidv4();
 
-    setUrl(`http://localhost:3000/calendar/${randomId}`);
+    setUrl(`http://localhost:3000/event/${randomId}`);
     setUrlarea(
       `タイトル：${title}\n開始：${startDate} ${startTime}\n終了：${endDate} ${endTime}\n場所：${location}\n詳細：${details}\nURL：${url}`
     );
