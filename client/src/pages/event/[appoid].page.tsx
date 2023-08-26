@@ -97,13 +97,17 @@ const Event = () => {
             </div>
         </div>
       </div>
-      <div>
-        <input className={styles.urlinput} type="text" value={url} readOnly />
-        <button onClick={handleCopyUrl}>Copy</button>
-      </div>
-      <div>
-        <textarea className={styles.urlarea} value={urlarea} readOnly />
-        <button onClick={handleCopyUrlArea}>Copy</button>
+      <div className={styles.urlzone}>
+        <div className={styles.urldetail}>カレンダーに追加するURL</div>
+        <div>
+          <input className={styles.urlinput} type="text" value={url} readOnly />
+          <button onClick={handleCopyUrl}>Copy</button>
+        </div>
+        <div className={styles.urlmessagedetail}>URL付きメッセージ</div>
+        <div>
+          <textarea className={styles.urlarea} value={urlarea} readOnly />
+          <button onClick={handleCopyUrlArea}>Copy</button>
+        </div>
       </div>
 
     </>
