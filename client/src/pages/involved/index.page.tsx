@@ -10,17 +10,6 @@ import Link from 'next/link';
 const Involved = () => {
   const [user] = useAtom(userAtom);
   const [involved, setInvolved] = useState<{ appoid: string; title: string; location: string; startDate: string; startTime: string; endDate: string; endTime: string; }[]>([]);
-  // useEffect(() => {
-  //   const fetchInvolved = async () => {
-  //     const response = await apiClient.append.get();
-  //     const body = response.body as Array<{ id: string; appoid: string; title: string; details: string; location: string; startDate: string; startTime: string; endDate: string; endTime: string; createdAt: Date; }>;
-  //     if (body === null) return;
-  //     setInvolved(body);
-  //   };
-  //   fetchInvolved();
-  // }
-  // , []);
-
 
   // localsotrageから取得
     useEffect(() => {
