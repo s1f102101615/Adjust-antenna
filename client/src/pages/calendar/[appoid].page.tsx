@@ -30,6 +30,9 @@ const Calendar = () => {
       const iCalendarData = baseURL + event + endCalendar;
       const encodedData = encodeURIComponent(iCalendarData);
       console.log('encodeEvent', encodedData);
+      // involvedに登録する
+      await apiClient.append.post({ body: { appoid: appoid as string } });
+      // デバイスによって処理を分ける
       const userAgent = window.navigator.userAgent.toLowerCase();
       if (userAgent.indexOf('iphone') > 0) {
         window.location.href = `webcal://pocketcalendar.app/${encodedData}`;

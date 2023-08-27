@@ -28,6 +28,10 @@ const Event = () => {
         return;
       }
       const response = await apiClient.calendar.get({ query: { appoid: appoid as string } });
+      if (response.body === null) {
+        setUrl(`このURLは無効です`);
+        return;
+      }
       await apiClient.append.post({ body: { appoid: appoid as string } });
       const nowEvent = response.body;
       console.log('nowEvent', nowEvent);
