@@ -5,7 +5,8 @@ import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../../atoms/user';
 import { useEffect, useState } from 'react';
-
+import styles from './index.module.css';
+import Link from 'next/link';
 
 const Involved = () => {
   const [user] = useAtom(userAtom);
@@ -20,7 +21,7 @@ const Involved = () => {
   //   fetchInvolved();
   // }
   // , []);
-  
+
 
   // localsotrageから取得
     useEffect(() => {
@@ -31,7 +32,12 @@ const Involved = () => {
     fetchInvolved();
   }, []);
 
-
+  // 日付を年月日形式にフォーマットする関数
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+    return formattedDate;
+  };
 
  
   if (!user) return <Loading visible />;
@@ -39,17 +45,17 @@ const Involved = () => {
   return (
     <>
       <BasicHeader user={user} />
-      <div>このアカウントで</div>
-      <div>
+      <div className={styles.involved}>
         {involved.map(eventString => {
               const eventObj = JSON.parse((eventString)); // JSON文字列をオブジェクトに変換
               return (
-                <div key={eventObj.appoid}>
+                <Link key={eventObj.appoid} href={`http://localhost:3000/event/${eventObj.appoid}`}>
+                <div key={eventObj.appoid} className={styles.eventCards}>
                   <strong>{eventObj.title}</strong><br />
                   Location: {eventObj.location}<br />
-                  Date: {eventObj.startDate} - {eventObj.endDate}<br />
-                  Time: {eventObj.startTime} - {eventObj.endTime}
+                  {formatDate(eventObj.startDate)}{eventObj.startTime} - {formatDate(eventObj.endDate)}{eventObj.endTime}<br />
                 </div>
+                </Link>
               );
             })}
       </div>
