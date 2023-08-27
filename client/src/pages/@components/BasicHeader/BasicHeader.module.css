@@ -1,17 +1,21 @@
 .container {
   height: 60px;
-  background: #fafafa;
+  background: #bcefff;
   border-bottom: 1px solid #eee;
 }
 
 .main {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   max-width: 960px;
   height: 100%;
   padding: 0 16px;
   margin: 0 auto;
+}
+
+.users {
+  flex-direction: column;
 }
 
 .userBtn {
@@ -22,12 +26,7 @@
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: 8px;
-  transition: 0.2s;
-}
-
-.userBtn:hover {
-  background: white;
-  border-color: #eee;
+  background-color: #fff;
 }
 
 .userIcon {
@@ -38,4 +37,30 @@
   font-size: 14px;
   font-weight: bold;
   color: #555;
+}
+
+
+.dropdownIcon {
+  margin-left: 8px;
+}
+
+.dropdown {
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.dropdownItem:hover {
+  background-color: #c3fbff;
+  padding: 8px;
+}
+
+.dropdownItem {
+  font-size: 14px;
+  padding: 8px;
+  cursor: pointer;
+  border-left: 1px solid rgb(189, 189, 189);
+  border-right: 1px solid rgb(189, 189, 189);
+  border-bottom: 1px solid rgb(189, 189, 189);
 }

@@ -163,7 +163,7 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <Link href='http://localhost:3000/involved'><div>閲覧履歴をすべて見る</div></Link>
+        <Link className={styles.oldlink} href='http://localhost:3000/involved'><div>{'>'}閲覧履歴をすべて見る</div></Link>
 
 
       </div>
