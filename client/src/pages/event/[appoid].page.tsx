@@ -22,15 +22,56 @@ const Event = () => {
 
   const { appoid } = router.query;
 
+  function saveEvent(eventData: string) {
+    if ((localStorage.getItem('recentEvents')) === null) {
+      const events = []
+      events.push(eventData);
+      localStorage.setItem('recentEvents', JSON.stringify(events));
+      return ;
+    } 
+    const events = JSON.parse(localStorage.getItem('recentEvents') as string);
+    // 同じイベントがある場合、保存しない
+    for (let i = 0; i < events.length; i++) {
+      if (events[i] === eventData) {
+        return ;
+      }
+    }
+    events.push(eventData);
+    // イベントが5件以上になる場合、古いイベントを削除
+    if (events.length > 5) {
+      events.shift(); // 最も古いイベントを削除
+    }
+    localStorage.setItem('recentEvents', JSON.stringify(events));
+    return ;
+  }
+
   useEffect(() => {
     const fetchEvent = async () => {
       if (appoid === undefined) {
         return;
       }
       const response = await apiClient.calendar.get({ query: { appoid: appoid as string } });
+      if (response.body === null) {
+        setUrl(`このURLは無効です`);
+        return;
+      }
+      // アカウントに保存
       await apiClient.append.post({ body: { appoid: appoid as string } });
+
       const nowEvent = response.body;
       console.log('nowEvent', nowEvent);
+
+      // ローカルストレージに保存
+      const newEvent = {
+        appoid: nowEvent.appoid as string,
+        title: nowEvent.title as string,
+        location:  nowEvent.location as string,
+        startDate: nowEvent.startDate as string,
+        startTime: nowEvent.startTime as string,
+        endDate: nowEvent.endDate as string,
+        endTime: nowEvent.endTime as string,
+      };
+      saveEvent(JSON.stringify(newEvent));
       // nowEventの中身をuseStateにセットする
       setTitle(nowEvent?.title);
       setStartDate(nowEvent?.startDate);

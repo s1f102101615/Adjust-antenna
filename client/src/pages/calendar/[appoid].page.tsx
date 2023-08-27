@@ -13,6 +13,29 @@ const Calendar = () => {
   const { appoid } = router.query;
   const [nowEvent, setNowEvent] = useState<CalendarModel>();
 
+  function saveEvent(eventData: string) {
+    if ((localStorage.getItem('recentEvents')) === null) {
+      const events = []
+      events.push(eventData);
+      localStorage.setItem('recentEvents', JSON.stringify(events));
+      return ;
+    } 
+    const events = JSON.parse(localStorage.getItem('recentEvents') as string);
+    // 同じイベントがある場合、保存しない
+    for (let i = 0; i < events.length; i++) {
+      if (events[i] === eventData) {
+        return ;
+      }
+    }
+    events.push(eventData);
+    // イベントが5件以上になる場合、古いイベントを削除
+    if (events.length > 5) {
+      events.shift(); // 最も古いイベントを削除
+    }
+    localStorage.setItem('recentEvents', JSON.stringify(events));
+    return ;
+  }
+
   useEffect(() => {
     const fetchEvent = async () => {
       if (appoid === undefined) {
@@ -30,6 +53,20 @@ const Calendar = () => {
       const iCalendarData = baseURL + event + endCalendar;
       const encodedData = encodeURIComponent(iCalendarData);
       console.log('encodeEvent', encodedData);
+      // involvedに登録する
+      await apiClient.append.post({ body: { appoid: appoid as string } });
+      // localStorageに保存する
+      const newEvent = {
+        appoid: nowEvent.appoid as string,
+        title: nowEvent.title as string,
+        location:  nowEvent.location as string,
+        startDate: nowEvent.startDate as string,
+        startTime: nowEvent.startTime as string,
+        endDate: nowEvent.endDate as string,
+        endTime: nowEvent.endTime as string,
+      };
+      saveEvent(JSON.stringify(newEvent));
+      // デバイスによって処理を分ける
       const userAgent = window.navigator.userAgent.toLowerCase();
       if (userAgent.indexOf('iphone') > 0) {
         window.location.href = `webcal://pocketcalendar.app/${encodedData}`;
