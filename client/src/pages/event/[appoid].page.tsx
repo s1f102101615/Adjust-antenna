@@ -28,6 +28,7 @@ const Event = () => {
         return;
       }
       const response = await apiClient.calendar.get({ query: { appoid: appoid as string } });
+      await apiClient.append.post({ body: { appoid: appoid as string } });
       const nowEvent = response.body;
       console.log('nowEvent', nowEvent);
       // nowEventの中身をuseStateにセットする
