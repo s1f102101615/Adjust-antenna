@@ -81,7 +81,7 @@ const Event = () => {
       setStartTime(nowEvent?.startTime);
       setEndTime(nowEvent?.endTime);
       setUrlarea(
-        `タイトル：${title}\n開始：${nowEvent?.startDate} ${nowEvent?.startTime}\n終了：${
+        `タイトル：${nowEvent?.title}\n開始：${nowEvent?.startDate} ${nowEvent?.startTime}\n終了：${
           nowEvent?.endDate
         } ${nowEvent?.endTime}\n場所：${nowEvent?.location}\n詳細：${
           nowEvent?.details
