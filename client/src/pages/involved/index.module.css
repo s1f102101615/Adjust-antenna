@@ -1,13 +1,14 @@
 
 .eventCards {
-  width: 100%;
+  width: 40%;
   padding: 15px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-.event-card strong {
+.title {
   font-size: 18px;
 }
 
@@ -20,4 +21,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  padding-top: 30px;
+}
+
+.headerup {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header {
+  width: 40%;
+}
+
+.flag {
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.uptitle {
+  font-size: 28px;
+  margin-top: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.link {
+  color: #047400;
 }

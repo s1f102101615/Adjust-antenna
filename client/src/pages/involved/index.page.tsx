@@ -45,13 +45,20 @@ const Involved = () => {
   return (
     <>
       <BasicHeader user={user} />
+      <div className={styles.headerup}>
+        <div className={styles.header}>
+          <div className={styles.flag}><a href={`http://localhost:3000`} className={styles.link}>ホームページ</a>{' '}
+            -&gt; 最近このブラウザで関与したイベント</div>
+          <div className={styles.uptitle}>最近このブラウザで関与したイベント</div>
+        </div>
+      </div>
       <div className={styles.involved}>
         {involved.map(eventString => {
               const eventObj = JSON.parse((eventString)); // JSON文字列をオブジェクトに変換
               return (
-                <Link key={eventObj.appoid} href={`http://localhost:3000/event/${eventObj.appoid}`}>
-                <div key={eventObj.appoid} className={styles.eventCards}>
-                  <strong>{eventObj.title}</strong><br />
+                <Link key={eventObj.appoid} className={styles.eventCards} href={`http://localhost:3000/event/${eventObj.appoid}`}>
+                <div key={eventObj.appoid}>
+                  <div className={styles.title}>{eventObj.title}</div><br />
                   Location: {eventObj.location}<br />
                   {formatDate(eventObj.startDate)}{eventObj.startTime} - {formatDate(eventObj.endDate)}{eventObj.endTime}<br />
                 </div>
