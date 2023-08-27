@@ -6,6 +6,7 @@ import { apiClient } from 'src/utils/apiClient';
 import { v4 as uuidv4 } from 'uuid';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
+import Link from 'next/link';
 interface Event {
   id: number;
   title: string;
@@ -27,7 +28,6 @@ const Home = () => {
   const [events, setEvents] = useState<Event[]>([
     { id: 1, title: 'イベント1', date: '2022-01-01', location: '東京' },
     { id: 2, title: 'イベント2', date: '2022-02-01', location: '大阪' },
-    { id: 3, title: 'イベント3', date: '2022-03-01', location: '名古屋' },
   ]);
 
   const generateURL = async () => {
@@ -64,6 +64,7 @@ const Home = () => {
   return (
     <>
       <BasicHeader user={user} />
+      <div className={styles.upinput}>
       <div className={styles.container}>
         <div className={styles.labelname}>すぐ作れる！カンタン連絡共有</div>
         <form onSubmit={handleSubmit}>
@@ -144,21 +145,25 @@ const Home = () => {
             </div>
           </div>
           <button className={styles.submitButton} type="submit" onClick={generateURL}>
-            URL生成
-          </button>
+            イ ベ ン ト 生 成
+          </button> 
         </form>
       </div>
-      <div>
-        <div className={styles.oldtitle}>最近このブラウザで閲覧したイベント</div>
-        {events.map((event) => (
-          <li key={event.id} className={styles.eventCard}>
-            <div className={styles.eventInfo}>
-              <div className={styles.eventTitle}>{event.title}</div>
-              <div className={styles.eventDate}>{event.date}</div>
-              <div className={styles.eventLocation}>{event.location}</div>
+      </div>
+      <div className={styles.old2}>
+        <div className={styles.oldtitle}>最近このブラウザで関与したイベント</div>
+        <div className={styles.oldevent}>
+          {events.map((event) => (
+            <div key={event.id} className={styles.eventCard}>
+              <div className={styles.eventInfo}>
+                <div className={styles.eventTitle}>{event.title}</div>
+                <div className={styles.eventDate}>{event.date}</div>
+                <div className={styles.eventLocation}>{event.location}</div>
+              </div>
             </div>
-          </li>
-        ))}
+          ))}
+        </div>
+        <Link href='http://localhost:3000/involved'><div>閲覧履歴をすべて見る</div></Link>
 
 
       </div>
