@@ -26,3 +26,8 @@ model Calendar {
   endTime   String
   createdAt DateTime
 }
+
+model UserData {
+  id         String   @id
+  involvedid String[]
+}
