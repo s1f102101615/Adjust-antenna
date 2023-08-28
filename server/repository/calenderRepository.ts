@@ -6,11 +6,11 @@ export const calendarRepository = {
   save: async (calendar: CalendarModel) => {
     await prismaClient.calendar.upsert({
       where: {
-        appoid: calendar.id,
+        appoid: calendar.appoid,
       },
       update: {},
       create: {
-        id: calendar.id,
+        id: calendar.id !== null ? calendar.id : '',
         appoid: calendar.appoid,
         title: calendar.title,
         startDate: calendar.startDate,
@@ -33,7 +33,7 @@ export const calendarRepository = {
     //calendarの値からCalendarModelを作成して返す
     if (calendar) {
       const calendarModel: CalendarModel = {
-        id: userIdParser.parse(calendar.id),
+        id: calendar.id ? userIdParser.parse(calendar.id) : userIdParser.parse(''),
         appoid: calendar.appoid,
         title: calendar.title ?? '',
         startDate: calendar.startDate ?? '',

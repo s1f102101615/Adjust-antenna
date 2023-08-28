@@ -1,5 +1,5 @@
-import type { UserId } from "$/commonTypesWithClient/branded";
-import { prismaClient } from "$/service/prismaClient";
+import type { UserId } from '$/commonTypesWithClient/branded';
+import { prismaClient } from '$/service/prismaClient';
 
 export const appendRepository = {
   getevents: async (userid: UserId) => {
@@ -60,4 +60,5 @@ export const appendRepository = {
         },
       });
     }
-  },}
+  },
+};

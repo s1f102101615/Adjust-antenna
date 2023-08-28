@@ -7,11 +7,22 @@
 .main {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   max-width: 960px;
   height: 100%;
   padding: 0 16px;
   margin: 0 auto;
+  width: 50%;
+}
+
+/* メインタイトル */
+.maintitle {
+  font-size: 37px;
+  font-weight: 900;
+  font-family: "Noto Sans CJK JP";
+  align-items: center;
+  color:#2c2c2c;
+  margin-top: 3px;
 }
 
 .users {

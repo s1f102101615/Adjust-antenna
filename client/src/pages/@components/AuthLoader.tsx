@@ -39,11 +39,9 @@ export const AuthLoader = () => {
     const redirectToHome = async () => {
       router.pathname === pagesPath.login.$url().pathname && (await router.push(pagesPath.$url()));
     };
-    const redirectToLogin = async () => {
-      router.pathname === pagesPath.$url().pathname && (await router.push(pagesPath.login.$url()));
-    };
 
-    user ? redirectToHome() : redirectToLogin();
+
+    user && redirectToHome();
   }, [router, isInitedAuth, user]);
 
   return <Loading visible={!isInitedAuth} />;

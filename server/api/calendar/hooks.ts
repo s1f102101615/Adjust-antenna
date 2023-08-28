@@ -12,7 +12,7 @@ export default defineHooks(() => ({
     const user = await getUserModel(req.cookies.session);
 
     if (!user) {
-      res.status(401).send();
+      req.user = null;
       return;
     }
 

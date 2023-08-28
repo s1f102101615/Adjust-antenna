@@ -167,6 +167,7 @@
   overflow: hidden;
   width: calc(50% - 10px);
   background-color:#ffffff;
+  padding: 20px;
 }
 
 .eventCard:hover {

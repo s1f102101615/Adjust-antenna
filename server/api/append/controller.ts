@@ -5,9 +5,6 @@ export default defineController(() => ({
   get: async ({ user }) => ({ status: 200, body: await appendRepository.getevents(user.id) }),
   post: async ({ user, body }) => ({
     status: 200,
-    body: await appendRepository.save(
-      user.id,
-      body.appoid,
-    ),
+    body: await appendRepository.save(user.id, body.appoid),
   }),
 }));

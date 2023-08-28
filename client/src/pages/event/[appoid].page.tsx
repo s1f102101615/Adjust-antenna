@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../../atoms/user';
@@ -23,17 +22,17 @@ const Event = () => {
   const { appoid } = router.query;
 
   function saveEvent(eventData: string) {
-    if ((localStorage.getItem('recentEvents')) === null) {
-      const events = []
+    if (localStorage.getItem('recentEvents') === null) {
+      const events = [];
       events.push(eventData);
       localStorage.setItem('recentEvents', JSON.stringify(events));
-      return ;
-    } 
+      return;
+    }
     const events = JSON.parse(localStorage.getItem('recentEvents') as string);
     // 同じイベントがある場合、保存しない
     for (let i = 0; i < events.length; i++) {
       if (events[i] === eventData) {
-        return ;
+        return;
       }
     }
     events.push(eventData);
@@ -42,7 +41,7 @@ const Event = () => {
       events.shift(); // 最も古いイベントを削除
     }
     localStorage.setItem('recentEvents', JSON.stringify(events));
-    return ;
+    return;
   }
 
   useEffect(() => {
@@ -55,8 +54,6 @@ const Event = () => {
         setUrl(`このURLは無効です`);
         return;
       }
-      // アカウントに保存
-      await apiClient.append.post({ body: { appoid: appoid as string } });
 
       const nowEvent = response.body;
       console.log('nowEvent', nowEvent);
@@ -65,7 +62,7 @@ const Event = () => {
       const newEvent = {
         appoid: nowEvent.appoid as string,
         title: nowEvent.title as string,
-        location:  nowEvent.location as string,
+        location: nowEvent.location as string,
         startDate: nowEvent.startDate as string,
         startTime: nowEvent.startTime as string,
         endDate: nowEvent.endDate as string,
@@ -112,8 +109,6 @@ const Event = () => {
       console.error('Failed to copy URL: ', err);
     }
   };
-
-  if (!user) return <Loading visible />;
 
   return (
     <>
