@@ -15,7 +15,7 @@ export type TaskModel = {
 };
 
 export type CalendarModel = {
-  id: UserId;
+  id: UserId | null;
   appoid: string;
   title: string;
   details: string;

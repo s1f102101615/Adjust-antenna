@@ -3,7 +3,7 @@ import { calendarRepository } from '$/repository/calenderRepository';
 
 export const calendarUsecase = {
   create: async (
-    id: CalendarModel['id'],
+    id: CalendarModel['id'] | null,
     appoid: CalendarModel['appoid'],
     title: CalendarModel['title'],
     startDate: CalendarModel['startDate'],
