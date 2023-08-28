@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loading } from 'src/components/Loading/Loading';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
 import { apiClient } from 'src/utils/apiClient';
@@ -7,15 +7,12 @@ import { v4 as uuidv4 } from 'uuid';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 import Link from 'next/link';
-interface Event {
-  id: number;
-  title: string;
-  date: string;
-  location: string;
-}
+
 
 const Home = () => {
   const [user] = useAtom(userAtom);
+  
+
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -24,11 +21,18 @@ const Home = () => {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
 
+
   //仮イベントデータ
-  const [events, setEvents] = useState<Event[]>([
-    { id: 1, title: 'イベント1', date: '2022-01-01', location: '東京' },
-    { id: 2, title: 'イベント2', date: '2022-02-01', location: '大阪' },
-  ]);
+  const [events, setEvents] = useState<string[]>([]);
+  //eventsにlocalStorageから取得したデータから直近２件だけを表示
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const events = JSON.parse(localStorage.getItem('recentEvents') as string);
+      setEvents(events.slice(-2));
+    };
+    fetchEvents();
+  }, []);
+  
 
   const generateURL = async () => {
     // randomIdを生成する
@@ -54,12 +58,18 @@ const Home = () => {
     return;
   };
 
+  // 日付を年月日形式にフォーマットする関数
+  const formatDate = (dateString: string | number | Date) => {
+    const date = new Date(dateString);
+    const formattedDate = `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
+    return formattedDate;
+  };
+
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     // Handle form submission here
   };
-
-  if (!user) return <Loading visible />;
 
   return (
     <>
@@ -153,14 +163,18 @@ const Home = () => {
       <div className={styles.old2}>
         <div className={styles.oldtitle}>最近このブラウザで関与したイベント</div>
         <div className={styles.oldevent}>
-          {events.map((event) => (
-            <div key={event.id} className={styles.eventCard}>
-              <div className={styles.eventInfo}>
-                <div className={styles.eventTitle}>{event.title}</div>
-                <div className={styles.eventDate}>{event.date}</div>
-                <div className={styles.eventLocation}>{event.location}</div>
-              </div>
-            </div>
+          {events.map((eventString => {
+            const event = JSON.parse((eventString));
+            return(
+              <Link key={event.appoid} className={styles.eventCard} href={`http://localhost:3000/event/${event.appoid}`}>
+                <div key={event.appoid}>
+                  <div className={styles.eventTitle}>{event.title}</div><br />
+                  Location: {event.location}<br />
+                  {formatDate(event.startDate)}{event.startTime} - {formatDate(event.endDate)}{event.endTime}<br />
+                </div>
+                </Link>
+            )
+          }
           ))}
         </div>
         <Link className={styles.oldlink} href='http://localhost:3000/involved'><div>{'>'}閲覧履歴をすべて見る</div></Link>

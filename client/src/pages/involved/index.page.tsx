@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 const Involved = () => {
   const [user] = useAtom(userAtom);
-  const [involved, setInvolved] = useState<{ appoid: string; title: string; location: string; startDate: string; startTime: string; endDate: string; endTime: string; }[]>([]);
+  const [involved, setInvolved] = useState<string[]>([]);
 
   // localsotrageから取得
     useEffect(() => {
@@ -27,8 +27,6 @@ const Involved = () => {
     return formattedDate;
   };
 
- 
-  if (!user) return <Loading visible />;
 
   return (
     <>

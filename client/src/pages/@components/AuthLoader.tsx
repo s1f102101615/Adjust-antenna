@@ -33,18 +33,6 @@ export const AuthLoader = () => {
     return unsubscribe;
   }, [setUser]);
 
-  useEffect(() => {
-    if (!isInitedAuth) return;
-
-    const redirectToHome = async () => {
-      router.pathname === pagesPath.login.$url().pathname && (await router.push(pagesPath.$url()));
-    };
-    const redirectToLogin = async () => {
-      router.pathname === pagesPath.$url().pathname && (await router.push(pagesPath.login.$url()));
-    };
-
-    user ? redirectToHome() : redirectToLogin();
-  }, [router, isInitedAuth, user]);
 
   return <Loading visible={!isInitedAuth} />;
 };

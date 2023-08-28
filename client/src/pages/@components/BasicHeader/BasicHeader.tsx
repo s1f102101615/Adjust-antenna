@@ -5,7 +5,7 @@ import styles from './BasicHeader.module.css';
 import { useState } from 'react';
 import Link from 'next/link';
 
-export const BasicHeader = ({ user }: { user: UserModel }) => {
+export const BasicHeader = ({ user }: { user: UserModel | null }) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const handleDropdownClick = () => {
@@ -26,14 +26,15 @@ export const BasicHeader = ({ user }: { user: UserModel }) => {
   return (
     <div className={styles.container}>
       <div className={styles.main}>
+        <Link href='http://localhost:3000/'><div className={styles.maintitle}>連絡あんてな</div></Link>
         <div className={styles.users}>
           <div className={styles.userBtn} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{marginTop: dropdownVisible ? '76px' : '0'}} onClick={handleDropdownClick} >
-            {user.photoURL !== undefined ? (
+            {user?.photoURL !== undefined ? (
               <img className={styles.userIcon} src={user.photoURL} height={24} alt={user.displayName} />
             ) : (
               <HumanIcon size={18} fill="#555" />
             )}
-            <span className={styles.userName}>{user.displayName}</span>
+            <span className={styles.userName}>{user?.displayName}</span>
             <span className={styles.dropdownIcon}>{dropdownVisible ? '▲' : '▼'}</span>
           </div>
           {dropdownVisible && (

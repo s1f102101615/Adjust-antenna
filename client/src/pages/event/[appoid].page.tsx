@@ -56,7 +56,9 @@ const Event = () => {
         return;
       }
       // アカウントに保存
-      await apiClient.append.post({ body: { appoid: appoid as string } });
+      if (user !== null) {
+        await apiClient.append.post({ body: { appoid: appoid as string } });
+      }
 
       const nowEvent = response.body;
       console.log('nowEvent', nowEvent);
@@ -112,8 +114,6 @@ const Event = () => {
       console.error('Failed to copy URL: ', err);
     }
   };
-
-  if (!user) return <Loading visible />;
 
   return (
     <>
