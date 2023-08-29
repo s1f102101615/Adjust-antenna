@@ -12,7 +12,8 @@ export const calendarUsecase = {
     endTime: CalendarModel['endTime'],
     details: CalendarModel['details'],
     location: CalendarModel['location'],
-    createdAt: CalendarModel['createdAt']
+    createdAt: CalendarModel['createdAt'],
+    group: CalendarModel['group']
   ) => {
     const calendar: CalendarModel = {
       id,
@@ -25,6 +26,7 @@ export const calendarUsecase = {
       details,
       location,
       createdAt,
+      group,
     };
     await calendarRepository.save(calendar);
 

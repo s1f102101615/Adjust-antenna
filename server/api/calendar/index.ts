@@ -19,6 +19,7 @@ export type Methods = DefineMethods<{
       details: CalendarModel['details'];
       location: CalendarModel['location'];
       createdAt: CalendarModel['createdAt'];
+      group: CalendarModel['group'];
     };
   };
 }>;

@@ -14,6 +14,7 @@ export type Methods = DefineMethods<{
           endDate: string;
           endTime: string;
           createdAt: Date;
+          group: string[];
         }[]
       | null;
   };

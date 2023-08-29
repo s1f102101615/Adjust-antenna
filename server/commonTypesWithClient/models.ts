@@ -25,4 +25,5 @@ export type CalendarModel = {
   endDate: string;
   endTime: string;
   createdAt: string;
+  group: string[];
 };

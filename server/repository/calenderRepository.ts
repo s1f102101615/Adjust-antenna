@@ -8,7 +8,7 @@ export const calendarRepository = {
       where: {
         appoid: calendar.appoid,
       },
-      update: {},
+      update: { group: calendar.group },
       create: {
         id: calendar.id !== null ? calendar.id : '',
         appoid: calendar.appoid,
@@ -20,6 +20,7 @@ export const calendarRepository = {
         details: calendar.details,
         location: calendar.location,
         createdAt: calendar.createdAt,
+        group: [],
       },
     });
   },
@@ -43,6 +44,7 @@ export const calendarRepository = {
         details: calendar.details ?? '',
         location: calendar.location ?? '',
         createdAt: calendar.createdAt.toISOString(),
+        group: calendar.group ?? [],
       };
       return calendarModel;
     }

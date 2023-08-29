@@ -45,6 +45,7 @@ const Home = () => {
           startTime,
           endTime,
           createdAt: new Date(),
+          group: [],
         },
       })
       .then(async () => {
