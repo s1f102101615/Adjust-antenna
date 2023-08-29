@@ -18,6 +18,7 @@ const Event = () => {
   const [endTime, setEndTime] = useState('');
   const [url, setUrl] = useState('');
   const [urlarea, setUrlarea] = useState('');
+  const [group, setGroup] = useState<string[]>([]);
 
   const { appoid } = router.query;
 
@@ -77,6 +78,7 @@ const Event = () => {
       setLocation(nowEvent?.location);
       setStartTime(nowEvent?.startTime);
       setEndTime(nowEvent?.endTime);
+      setGroup(nowEvent?.group);
       setUrlarea(
         `タイトル：${nowEvent?.title}\n開始：${nowEvent?.startDate} ${nowEvent?.startTime}\n終了：${
           nowEvent?.endDate
@@ -141,6 +143,14 @@ const Event = () => {
           <div className={styles.detailaround}>
             <div className={styles.detailofdetail}>イベントの詳細</div>
             <div className={styles.detail}>{details}</div>
+          </div>
+          <div className={styles.grouparound}>
+            <div className={styles.groupdetail}>参加者</div>
+            <div className={styles.group}>
+              {group.map((group) => (
+                <div key={group}>{group}&nbsp;</div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

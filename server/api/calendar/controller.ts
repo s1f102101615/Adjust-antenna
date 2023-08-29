@@ -19,7 +19,8 @@ export default defineController(() => ({
       body.endTime,
       body.details,
       body.location,
-      body.createdAt
+      body.createdAt,
+      body.group
     ),
   }),
 }));

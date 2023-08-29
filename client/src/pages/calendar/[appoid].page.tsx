@@ -13,6 +13,17 @@ const Calendar = () => {
   const { appoid } = router.query;
   const [nowEvent, setNowEvent] = useState<CalendarModel>();
   const [pop, setPop] = useState(true);
+  const [username, setUsername] = useState('');
+  const [calendarType, setCalendarType] = useState('google');
+  const [title, setTitle] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [details, setDetails] = useState('');
+  const [location, setLocation] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [createdAt, setCreatedAt] = useState(new Date());
+  const [group, setGroup] = useState<string[]>([]);
 
   function saveEvent(eventData: string) {
     if (localStorage.getItem('recentEvents') === null) {
@@ -44,21 +55,27 @@ const Calendar = () => {
       }
       const response = await apiClient.calendar.get({ query: { appoid: appoid as string } });
       const nowEvent = response.body;
+      // nowEventにセットする
+      setTitle(nowEvent.title);
+      setStartDate(nowEvent.startDate);
+      setEndDate(nowEvent.endDate);
+      setDetails(nowEvent.details);
+      setLocation(nowEvent.location);
+      setStartTime(nowEvent.startTime);
+      setEndTime(nowEvent.endTime);
+      setCreatedAt(nowEvent.createdAt);
+      setGroup(nowEvent.group);
       console.log('nowEvent', nowEvent);
       setNowEvent(nowEvent); // update the type of nowEvent to match CalendarModel
     };
     fetchEvent();
   }, [appoid]);
 
-  const fetchCalendar = async () => {
+  // eslint-disable-next-line complexity
+  const fetchCalendar = async (username: string, calendarType: string) => {
     if (appoid === undefined) {
       return;
     }
-    const response = await apiClient.calendar.get({ query: { appoid: appoid as string } });
-    const nowEvent = response.body;
-    console.log('nowEvent', nowEvent);
-    setNowEvent(nowEvent); // update the type of nowEvent to match CalendarModel
-
     const baseURL = 'BEGIN:VCALENDAR\nVERSION:2.0\n';
     const event = `BEGIN:VEVENT\nSUMMARY:${nowEvent?.title}\nDTSTART:${nowEvent?.startDate}T${nowEvent?.startTime}+0900\nDTEND:${nowEvent?.endDate}T${nowEvent?.endTime}+0900\nDESCRIPTION:${nowEvent?.details}\nLOCATION:${nowEvent?.location}\nEND:VEVENT\n`;
     const endCalendar = 'END:VCALENDAR';
@@ -66,36 +83,59 @@ const Calendar = () => {
     const iCalendarData = baseURL + event + endCalendar;
     const encodedData = encodeURIComponent(iCalendarData);
     console.log('encodeEvent', encodedData);
-    // involvedに登録する
-    await apiClient.append.post({ body: { appoid: appoid as string } });
+    if (user !== null) {
+      await apiClient.append.post({ body: { appoid: appoid as string } });
+    }
+    //groupに登録する
+    await apiClient.calendar.post({
+      body: {
+        appoid: appoid as string,
+        title: title as string,
+        startDate: startDate as string,
+        endDate: endDate as string,
+        details: details as string,
+        location: location as string,
+        startTime: startTime as string,
+        endTime: endTime as string,
+        createdAt: createdAt as Date,
+        group: [...group, username],
+      },
+    });
     // localStorageに保存する
     const newEvent = {
-      appoid: nowEvent.appoid as string,
-      title: nowEvent.title as string,
-      location: nowEvent.location as string,
-      startDate: nowEvent.startDate as string,
-      startTime: nowEvent.startTime as string,
-      endDate: nowEvent.endDate as string,
-      endTime: nowEvent.endTime as string,
+      appoid: appoid as string,
+      title: title as string,
+      location: location as string,
+      startDate: startDate as string,
+      startTime: startTime as string,
+      endDate: endDate as string,
+      endTime: endTime as string,
     };
     saveEvent(JSON.stringify(newEvent));
-    // デバイスによって処理を分ける
-    const userAgent = window.navigator.userAgent.toLowerCase();
-    if (userAgent.indexOf('iphone') > 0) {
-      window.location.href = `webcal://pocketcalendar.app/${encodedData}`;
-    } else if (userAgent.indexOf('android') > 0) {
-      const downloadLink = document.createElement('a');
-      downloadLink.href = `data:text/calendar;charset=utf-8,${encodedData}`;
-      downloadLink.download = 'event.ics';
-      downloadLink.click();
-    } else if (userAgent.indexOf('windows') > 0) {
+    // 指定されたカレンダーによって処理を分ける
+    if (calendarType === 'google') {
+      // window.location.href = `webcal://pocketcalendar.app/${encodedData}`;
+    } else if (calendarType === 'apple') {
+      // const downloadLink = document.createElement('a');
+      // downloadLink.href = `data:text/calendar;charset=utf-8,${encodedData}`;
+      // downloadLink.download = 'event.ics';
+      // downloadLink.click();
+    } else if (calendarType === 'outlook') {
       window.open(`data:text/calendar;charset=utf-8,${encodedData}`);
     }
   };
 
   const handleButtonClick = () => {
     setPop(false);
-    fetchCalendar();
+    fetchCalendar(username, calendarType);
+  };
+
+  const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUsername(event.target.value);
+  };
+
+  const handleCalendarTypeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setCalendarType(event.target.value);
   };
 
   return (
@@ -117,10 +157,18 @@ const Calendar = () => {
             <div className={styles.popuptext}>
               このイベントをカレンダーに追加しますか？
               <br />
-              ユーザーの名前
-              <input type="text" />
-              カレンダーの種類
-              <input type="text" />
+              <div className={styles.forminput}>
+                <label htmlFor="username">ユーザー名</label>
+                <input type="text" id="username" value={username} onChange={handleUsernameChange} />
+              </div>
+              <div className={styles.forminput}>
+                <label htmlFor="calendarType">カレンダーの種類</label>
+                <select id="calendarType" value={calendarType} onChange={handleCalendarTypeChange}>
+                  <option value="google">Googleカレンダー</option>
+                  <option value="apple">Appleカレンダー</option>
+                  <option value="outlook">Outlookカレンダー</option>
+                </select>
+              </div>
             </div>
             <div className={styles.popupbutton}>
               <button onClick={handleButtonClick}>追加する</button>

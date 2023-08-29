@@ -25,6 +25,7 @@ model Calendar {
   endDate   String
   endTime   String
   createdAt DateTime
+  group     String[]
 }
 
 model UserData {

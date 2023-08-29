@@ -1,27 +1,25 @@
-.urlinput{
+.urlinput {
   width: 900px;
   height: 2.4em;
   padding: 0 16px;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 17px;
   border: none;
   border-radius: 4px;
   box-shadow: 0 0 0 1px #ccc inset;
   appearance: none;
-  appearance: none;
 }
 
-.urlarea{
+.urlarea {
   display: block;
   width: 500px;
   height: 180px;
   padding: 4px 16px;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Courier New', Courier, monospace;
   font-size: 17px;
   border: none;
   border-radius: 4px;
   box-shadow: 0 0 0 1px #ccc inset;
-  appearance: none;
   appearance: none;
 }
 
@@ -50,11 +48,11 @@
 }
 
 .container {
-  width : 50%;
+  width: 50%;
 }
 
 .timearound {
-  display: flex;  
+  display: flex;
   flex-direction: row; /* 横並びにする */
   align-items: center;
   justify-content: space-between; /* 左右に張り付ける */
@@ -87,9 +85,9 @@
 }
 
 .to {
-  margin-top:7px;
-  font-size:35px;
-  font-weight:bold;
+  margin-top: 7px;
+  font-size: 35px;
+  font-weight: bold;
 }
 
 .timedetail {
@@ -131,9 +129,35 @@
 
 .detail {
   width: 100%;
-  font-size: 1.0em;
+  font-size: 1em;
   font-weight: bold;
   color: #333;
+}
+
+.grouparound {
+  display: flex;
+  flex-direction: column; /* 縦並びにする */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.groupdetail {
+  width: 100%;
+  font-size: 1em;
+  font-weight: bold;
+  color: #747474;
+}
+
+.group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .locationaround {
