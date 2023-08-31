@@ -116,10 +116,7 @@ const Calendar = () => {
     if (calendarType === 'google') {
       // window.location.href = `webcal://pocketcalendar.app/${encodedData}`;
     } else if (calendarType === 'apple') {
-      // const downloadLink = document.createElement('a');
-      // downloadLink.href = `data:text/calendar;charset=utf-8,${encodedData}`;
-      // downloadLink.download = 'event.ics';
-      // downloadLink.click();
+      // window.location.href = `data:text/calendar;charset=utf-8,${encodedData}`;
     } else if (calendarType === 'outlook') {
       window.open(`data:text/calendar;charset=utf-8,${encodedData}`);
     }
@@ -128,6 +125,11 @@ const Calendar = () => {
   const handleButtonClick = () => {
     setPop(false);
     fetchCalendar(username, calendarType);
+  };
+
+  const handleBackClick = () => {
+    setPop(false);
+    router.push(`/event/${appoid}`);
   };
 
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,8 +143,7 @@ const Calendar = () => {
   return (
     <>
       <BasicHeader user={user} />
-      <div>{nowEvent?.appoid}</div>
-      <div>pcでアクセスした場合カレンダーに追加するためのデータをDLしています(8KB程)</div>
+      <div>Outlookを選択した場合カレンダーに追加するためのデータをDLします(8KB程)</div>
       {/* popがtrueだったら現れるポップアップを作成する */}
       {pop && (
         <div className={styles.popup}>
@@ -154,16 +155,32 @@ const Calendar = () => {
               {nowEvent?.startDate} {nowEvent?.startTime} - {nowEvent?.endDate} {nowEvent?.endTime}
             </div>
             <div className={styles.popupdetails}>{nowEvent?.details}</div>
+            {/* 線を追加 */}
+            <div className={styles.line} />
             <div className={styles.popuptext}>
-              このイベントをカレンダーに追加しますか？
-              <br />
+              <div className={styles.caution}>このイベントをカレンダーに追加しますか？</div>
               <div className={styles.forminput}>
-                <label htmlFor="username">ユーザー名</label>
-                <input type="text" id="username" value={username} onChange={handleUsernameChange} />
+                <label className={styles.label} htmlFor="username">
+                  ユーザー名
+                </label>
+                <input
+                  type="text"
+                  className={styles.input}
+                  id="username"
+                  value={username}
+                  onChange={handleUsernameChange}
+                />
               </div>
               <div className={styles.forminput}>
-                <label htmlFor="calendarType">カレンダーの種類</label>
-                <select id="calendarType" value={calendarType} onChange={handleCalendarTypeChange}>
+                <label className={styles.label} htmlFor="calendarType">
+                  カレンダーの種類
+                </label>
+                <select
+                  className={styles.input}
+                  id="calendarType"
+                  value={calendarType}
+                  onChange={handleCalendarTypeChange}
+                >
                   <option value="google">Googleカレンダー</option>
                   <option value="apple">Appleカレンダー</option>
                   <option value="outlook">Outlookカレンダー</option>
@@ -171,7 +188,12 @@ const Calendar = () => {
               </div>
             </div>
             <div className={styles.popupbutton}>
-              <button onClick={handleButtonClick}>追加する</button>
+              <button className={styles.buttonback} onClick={handleBackClick}>
+                イベントページへ
+              </button>
+              <button className={styles.button} onClick={handleButtonClick}>
+                追加する
+              </button>
             </div>
           </div>
         </div>
@@ -179,5 +201,4 @@ const Calendar = () => {
     </>
   );
 };
-
 export default Calendar;

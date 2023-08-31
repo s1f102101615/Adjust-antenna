@@ -19,6 +19,7 @@ const Event = () => {
   const [url, setUrl] = useState('');
   const [urlarea, setUrlarea] = useState('');
   const [group, setGroup] = useState<string[]>([]);
+  const [id, setId] = useState('');
 
   const { appoid } = router.query;
 
@@ -71,6 +72,7 @@ const Event = () => {
       };
       saveEvent(JSON.stringify(newEvent));
       // nowEventの中身をuseStateにセットする
+      setId(nowEvent?.id);
       setTitle(nowEvent?.title);
       setStartDate(nowEvent?.startDate);
       setEndDate(nowEvent?.endDate);
@@ -120,6 +122,8 @@ const Event = () => {
           <div className={styles.titlearound}>
             <div className={styles.titledetail}>タイトル</div>
             <div className={styles.title}>{title}</div>
+            {/* idがuidと一致していたらあなたは作成者ですと表示する */}
+            {id === user?.id && <div className={styles.creater}>あなたが作成者です</div>}
           </div>
           <div className={styles.timearound}>
             <div className={styles.starttime}>
@@ -145,7 +149,7 @@ const Event = () => {
             <div className={styles.detail}>{details}</div>
           </div>
           <div className={styles.grouparound}>
-            <div className={styles.groupdetail}>参加者</div>
+            <div className={styles.groupdetail}>参加者 現在{group.length}人</div>
             <div className={styles.group}>
               {group.map((group) => (
                 <div key={group}>{group}&nbsp;</div>
@@ -155,15 +159,23 @@ const Event = () => {
         </div>
       </div>
       <div className={styles.urlzone}>
-        <div className={styles.urldetail}>カレンダーに追加するURL</div>
+        <div className={styles.urldetail}>イベントに参加するURL</div>
         <div>
           <input className={styles.urlinput} type="text" value={url} readOnly />
-          <button onClick={handleCopyUrl}>Copy</button>
+          <button className={styles.copybutton1} onClick={handleCopyUrl}>
+            Copy
+          </button>
         </div>
+        {/* イベントに参加するボタン */}
+        <a href={`${url}`} className={styles.btn}>
+          <div className={styles.btntext}>イベントに参加する&gt;</div>
+        </a>
         <div className={styles.urlmessagedetail}>URL付きメッセージ</div>
         <div>
           <textarea className={styles.urlarea} value={urlarea} readOnly />
-          <button onClick={handleCopyUrlArea}>Copy</button>
+          <button className={styles.copybutton1} onClick={handleCopyUrlArea}>
+            Copy
+          </button>
         </div>
       </div>
     </>

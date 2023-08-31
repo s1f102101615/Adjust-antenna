@@ -2,9 +2,9 @@
   width: 40%;
   padding: 15px;
   margin-bottom: 10px;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 .title {
@@ -12,28 +12,36 @@
 }
 
 .mylist {
-  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  background-color: #f5f5f5;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   padding-top: 30px;
+  background-color: #f5f5f5;
 }
 
 .mytitle {
-  font-size: 25px;
-  font-weight: bold;
-  margin-top: 20px;
-  margin-bottom: 20px;
   justify-content: center;
   width: 40%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  font-weight: bold;
 }
 
 .siteup {
-  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.label {
+  display: block;
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 2px solid #ccc;
 }
