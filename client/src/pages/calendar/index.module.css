@@ -12,8 +12,9 @@
 
 .popupinner {
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   padding: 32px;
+  margin-bottom: 52px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
@@ -80,23 +81,37 @@
   transition: background-color 0.2s ease-in-out;
 }
 
+.buttonback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #7c7c7c;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease-in-out;
+}
+
 .button:hover {
   background-color: #444;
 }
 
 .popupbutton {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .line {
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 95%;
   height: 1px;
   margin-top: 16px;
   margin-bottom: 16px;
-  background-color: #333;
+  background-color: #646464;
 }
 
 .caution {

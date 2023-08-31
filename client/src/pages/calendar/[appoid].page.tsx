@@ -127,6 +127,11 @@ const Calendar = () => {
     fetchCalendar(username, calendarType);
   };
 
+  const handleBackClick = () => {
+    setPop(false);
+    router.push(`/event/${appoid}`);
+  };
+
   const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(event.target.value);
   };
@@ -138,8 +143,7 @@ const Calendar = () => {
   return (
     <>
       <BasicHeader user={user} />
-      <div>{nowEvent?.appoid}</div>
-      <div>pcでアクセスした場合カレンダーに追加するためのデータをDLしています(8KB程)</div>
+      <div>Outlookを選択した場合カレンダーに追加するためのデータをDLします(8KB程)</div>
       {/* popがtrueだったら現れるポップアップを作成する */}
       {pop && (
         <div className={styles.popup}>
@@ -184,6 +188,9 @@ const Calendar = () => {
               </div>
             </div>
             <div className={styles.popupbutton}>
+              <button className={styles.buttonback} onClick={handleBackClick}>
+                イベントページへ
+              </button>
               <button className={styles.button} onClick={handleButtonClick}>
                 追加する
               </button>
