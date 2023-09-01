@@ -10,8 +10,8 @@ import styles from './index.module.css';
 const Mypage = () => {
   const [user] = useAtom(userAtom);
   const [settings, setSettings] = useState<
-    'profile' | 'email' | 'password' | 'email-reception' | 'withdrawal'
-  >('profile');
+    'mypage' | 'profile' | 'email' | 'password' | 'email-reception' | 'withdrawal'
+  >('mypage');
   const [involved, setInvolved] = useState<
     | {
         id: string;
@@ -61,7 +61,7 @@ const Mypage = () => {
 
       <div className={styles.mylist}>
         <div className={styles.pasent}>
-          {settings === 'profile' && (
+          {settings === 'mypage' && (
             <>
               {/* プロフィール設定のコンポーネントを表示 */}
               <div className={styles.cont}>
@@ -87,7 +87,37 @@ const Mypage = () => {
               </div>
             </>
           )}
-          {settings === 'email' && <div>{/* メールアドレス設定のコンポーネントを表示 */}</div>}
+          {settings === 'profile' && (
+            <>
+              <div className={styles.profilebox}>
+                <div className={styles.profiledetail}>
+                  プロフィールとして、以下の内容が登録されています。
+                  <br />
+                  変更する場合は『プロフィールを変更する』をクリックしてください。
+                  <div className={styles.profile}>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>ニックネーム</div>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>性別</div>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>生年月日</div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+          {settings === 'email' && (
+            <>
+              <div className={styles.emailbox}>
+                <div className={styles.emaildetail}>
+                  メールアドレスとして、以下の内容が登録されています。
+                  <br />
+                  変更する場合は『メールアドレスを変更する』をクリックしてください。
+                  <div className={styles.mailadress}>
+                    <div style={{ backgroundColor: 'gray', width: '10px' }}></div>
+                    {user.email}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
           {settings === 'password' && <div>{/* パスワード設定のコンポーネントを表示 */}</div>}
           {settings === 'email-reception' && (
             <div>{/* メール受信設定のコンポーネントを表示 */}</div>
@@ -96,6 +126,9 @@ const Mypage = () => {
 
           <div className={styles.settings}>
             <div className={styles.label1}>設定</div>
+            <div className={styles.setlabel} onClick={() => handleSettingsClick('mypage')}>
+              マイページトップ
+            </div>
             <div className={styles.setlabel} onClick={() => handleSettingsClick('profile')}>
               プロフィール設定
             </div>

@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 1000px;
   padding-top: 30px;
   background-color: #f5f5f5;
 }
@@ -95,4 +95,46 @@
   font-size: 20px;
   font-weight: bold;
   background-color: #f5f5f5;
+}
+
+.emailbox {
+  width: 896px;
+  height: 250px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.emaildetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.mailadress {
+  width: 70%;
+  margin: 15px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}
+
+.profilebox {
+  width: 896px;
+  height: 300px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.profiledetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.profile {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
 }
