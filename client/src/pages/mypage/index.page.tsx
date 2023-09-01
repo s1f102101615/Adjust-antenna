@@ -51,25 +51,48 @@ const Mypage = () => {
       </div>
 
       <div className={styles.mylist}>
-        <div className={styles.label}>イベント履歴</div>
-        {involved.reverse().map((item) => (
-          <Link
-            key={item?.appoid}
-            className={styles.eventCards}
-            href={`http://localhost:3000/event/${item?.appoid}`}
-          >
-            <div key={item?.appoid}>
-              <div className={styles.title}>{item?.title}</div>
-              <br />
-              Location: {item?.location}
-              <br />
-              {formatDate(item?.startDate)}
-              {item?.startTime} - {formatDate(item?.endDate)}
-              {item?.endTime}
-              <br />
+        <div className={styles.pasent}>
+          <div className={styles.cont}>
+            <div className={styles.label}>イベント履歴</div>
+            {involved.reverse().map((item) => (
+              <Link
+                key={item?.appoid}
+                className={styles.eventCards}
+                href={`http://localhost:3000/event/${item?.appoid}`}
+              >
+                <div key={item?.appoid}>
+                  <div className={styles.title}>{item?.title}</div>
+                  <br />
+                  Location: {item?.location}
+                  <br />
+                  {formatDate(item?.startDate)}
+                  {item?.startTime} - {formatDate(item?.endDate)}
+                  {item?.endTime}
+                  <br />
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.settings}>
+            <div className={styles.label1}>設定</div>
+            <div className={styles.setlabel}>
+              <Link href="/profile">プロフィール設定</Link>
             </div>
-          </Link>
-        ))}
+            <div className={styles.setlabel}>
+              <Link href="/email">メールアドレス設定</Link>
+            </div>
+            <div className={styles.setlabel}>
+              <Link href="/password">パスワード設定</Link>
+            </div>
+            <div className={styles.setlabel}>
+              <Link href="/email-reception">メール受信設定</Link>
+            </div>
+            <div className={styles.setlabel}>
+              <Link href="/withdrawal">退会設定</Link>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
