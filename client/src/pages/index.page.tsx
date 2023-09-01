@@ -173,7 +173,7 @@ const Home = () => {
                 <div key={event.appoid}>
                   <div className={styles.eventTitle}>{event.title}</div>
                   <br />
-                  Location: {event.location}
+                  場所: {event.location}
                   <br />
                   {formatDate(event.startDate)}
                   {event.startTime} - {formatDate(event.endDate)}
