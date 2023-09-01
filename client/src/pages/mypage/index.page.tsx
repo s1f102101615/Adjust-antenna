@@ -9,6 +9,9 @@ import styles from './index.module.css';
 
 const Mypage = () => {
   const [user] = useAtom(userAtom);
+  const [settings, setSettings] = useState<
+    'profile' | 'email' | 'password' | 'email-reception' | 'withdrawal'
+  >('profile');
   const [involved, setInvolved] = useState<
     | {
         id: string;
@@ -40,6 +43,12 @@ const Mypage = () => {
     return formattedDate;
   };
 
+  const handleSettingsClick = (
+    setting: 'profile' | 'email' | 'password' | 'email-reception' | 'withdrawal'
+  ) => {
+    setSettings(setting);
+  };
+
   if (!user) return <Loading visible />;
 
   return (
@@ -52,44 +61,55 @@ const Mypage = () => {
 
       <div className={styles.mylist}>
         <div className={styles.pasent}>
-          <div className={styles.cont}>
-            <div className={styles.label}>イベント履歴</div>
-            {involved.reverse().map((item) => (
-              <Link
-                key={item?.appoid}
-                className={styles.eventCards}
-                href={`http://localhost:3000/event/${item?.appoid}`}
-              >
-                <div key={item?.appoid}>
-                  <div className={styles.title}>{item?.title}</div>
-                  <br />
-                  Location: {item?.location}
-                  <br />
-                  {formatDate(item?.startDate)}
-                  {item?.startTime} - {formatDate(item?.endDate)}
-                  {item?.endTime}
-                  <br />
-                </div>
-              </Link>
-            ))}
-          </div>
+          {settings === 'profile' && (
+            <>
+              {/* プロフィール設定のコンポーネントを表示 */}
+              <div className={styles.cont}>
+                <div className={styles.label}>イベント履歴</div>
+                {involved.reverse().map((item) => (
+                  <Link
+                    key={item?.appoid}
+                    className={styles.eventCards}
+                    href={`http://localhost:3000/event/${item?.appoid}`}
+                  >
+                    <div key={item?.appoid}>
+                      <div className={styles.title}>{item?.title}</div>
+                      <br />
+                      Location: {item?.location}
+                      <br />
+                      {formatDate(item?.startDate)}
+                      {item?.startTime} - {formatDate(item?.endDate)}
+                      {item?.endTime}
+                      <br />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+          {settings === 'email' && <div>{/* メールアドレス設定のコンポーネントを表示 */}</div>}
+          {settings === 'password' && <div>{/* パスワード設定のコンポーネントを表示 */}</div>}
+          {settings === 'email-reception' && (
+            <div>{/* メール受信設定のコンポーネントを表示 */}</div>
+          )}
+          {settings === 'withdrawal' && <div>{/* 退会設定のコンポーネントを表示 */}</div>}
 
           <div className={styles.settings}>
             <div className={styles.label1}>設定</div>
-            <div className={styles.setlabel}>
-              <Link href="/profile">プロフィール設定</Link>
+            <div className={styles.setlabel} onClick={() => handleSettingsClick('profile')}>
+              プロフィール設定
             </div>
-            <div className={styles.setlabel}>
-              <Link href="/email">メールアドレス設定</Link>
+            <div className={styles.setlabel} onClick={() => handleSettingsClick('email')}>
+              メールアドレス設定
             </div>
-            <div className={styles.setlabel}>
-              <Link href="/password">パスワード設定</Link>
+            <div className={styles.setlabel} onClick={() => handleSettingsClick('password')}>
+              パスワード設定
             </div>
-            <div className={styles.setlabel}>
-              <Link href="/email-reception">メール受信設定</Link>
+            <div className={styles.setlabel} onClick={() => handleSettingsClick('email-reception')}>
+              メール受信設定
             </div>
-            <div className={styles.setlabel}>
-              <Link href="/withdrawal">退会設定</Link>
+            <div className={styles.setlabel} onClick={() => handleSettingsClick('withdrawal')}>
+              退会設定
             </div>
           </div>
         </div>
