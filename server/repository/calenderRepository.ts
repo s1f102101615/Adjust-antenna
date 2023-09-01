@@ -10,7 +10,7 @@ export const calendarRepository = {
       },
       update: { group: calendar.group },
       create: {
-        id: calendar.id !== null ? calendar.id : '',
+        id: calendar.id !== undefined ? calendar.id : '',
         appoid: calendar.appoid,
         title: calendar.title,
         startDate: calendar.startDate,
@@ -19,7 +19,7 @@ export const calendarRepository = {
         endTime: calendar.endTime,
         details: calendar.details,
         location: calendar.location,
-        createdAt: calendar.createdAt,
+        createdAt: new Date(calendar.createdAt).toISOString(),
         group: [],
       },
     });

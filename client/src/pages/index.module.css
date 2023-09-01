@@ -1,13 +1,13 @@
 .container {
   width: 50%;
   padding: 20px;
-  margin: 0 auto; 
+  margin: 0 auto;
 }
 
 .upinput {
-  background-color: #f3f9ff;
   width: 100%;
   padding-bottom: 20px;
+  background-color: #f3f9ff;
 }
 
 .formGroup {
@@ -32,9 +32,9 @@
   font-weight: bold;
 }
 
-.input[type="text"],
-.input[type="date"],
-.input[type="time"],
+.input[type='text'],
+.input[type='date'],
+.input[type='time'],
 .textarea {
   width: 100%;
   padding: 8px;
@@ -44,12 +44,12 @@
 
 .submitButton {
   justify-content: center;
-  width : 100%;
+  width: 100%;
   height: 60px;
-  font-size: 1.5em;
-  font-weight: bold;
   padding: 8px 15px;
   margin-top: 40px;
+  font-size: 1.5em;
+  font-weight: bold;
   color: white;
   cursor: pointer;
   background-color: #007bff;
@@ -73,7 +73,7 @@
 }
 
 .labelname {
-  width: 100%; 
+  width: 100%;
   font-size: 1.7em;
   font-weight: bold;
   color: #333;
@@ -81,7 +81,7 @@
 }
 
 .navigate {
-  font-size : 1.2em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #494949;
 }
@@ -110,25 +110,25 @@
 
 .navigatememo {
   margin-top: 20px;
-  font-size : 1.2em;
+  font-size: 1.2em;
   font-weight: bold;
   color: #494949;
 }
 
 .navigatestart {
-  font-size : 0.9em;
+  font-size: 0.9em;
   font-weight: bold;
   color: #666;
 }
 
 .navigateend {
-  font-size : 0.9em;
+  font-size: 0.9em;
   font-weight: bold;
   color: #494949;
 }
 
 .date {
-  width: 100%; 
+  width: 100%;
   font-size: 1.6em;
   color: #333;
 }
@@ -139,55 +139,52 @@
   color: #333;
 }
 
-
-
 .oldtitle {
-  width: 50%; 
+  justify-content: center;
+  width: 50%;
+  margin-top: 30px;
+  margin-bottom: 20px;
   font-size: 1.2em;
   font-weight: bold;
   color: #333;
-  justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 20px;
   border-bottom: 1px solid #ccc;
 }
 
 .eventList {
-  list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .eventCard {
   display: flex;
   align-items: center;
+  width: calc(50% - 10px);
+  padding: 20px;
   margin-bottom: 20px;
+  overflow: hidden;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
-  overflow: hidden;
-  width: calc(50% - 10px);
-  background-color:#ffffff;
-  padding: 20px;
 }
 
 .eventCard:hover {
   box-shadow: 0 0 5px #ccc;
 }
 
-
 .eventInfo {
   padding: 10px;
 }
 
 .eventTitle {
+  margin-bottom: 5px;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
 }
 
 .eventDate {
-  font-size: 14px;
   margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .eventLocation {
@@ -196,25 +193,25 @@
 
 .oldevent {
   display: flex;
+  flex-direction: row;
+  gap: 20px;
   align-items: center;
+  width: 50%;
   margin-bottom: 15px;
   overflow: hidden;
-  flex-direction: row;
-  width: 50%;
-  gap: 20px;
 }
 
 .old2 {
-  width: 100%;
-  justify-content: center;
-  display:flex;
-  align-items: center;
+  display: flex;
   flex-direction: column;
-  background-color:#f3f3f3;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #f3f3f3;
 }
 
 .oldlink {
+  margin-bottom: 30px;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 30px;
 }

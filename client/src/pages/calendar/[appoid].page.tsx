@@ -56,17 +56,19 @@ const Calendar = () => {
       const response = await apiClient.calendar.get({ query: { appoid: appoid as string } });
       const nowEvent = response.body;
       // nowEventにセットする
-      setTitle(nowEvent.title);
-      setStartDate(nowEvent.startDate);
-      setEndDate(nowEvent.endDate);
-      setDetails(nowEvent.details);
-      setLocation(nowEvent.location);
-      setStartTime(nowEvent.startTime);
-      setEndTime(nowEvent.endTime);
-      setCreatedAt(nowEvent.createdAt);
-      setGroup(nowEvent.group);
-      console.log('nowEvent', nowEvent);
-      setNowEvent(nowEvent); // update the type of nowEvent to match CalendarModel
+      if (nowEvent) {
+        setTitle(nowEvent.title);
+        setStartDate(nowEvent.startDate);
+        setEndDate(nowEvent.endDate);
+        setDetails(nowEvent.details);
+        setLocation(nowEvent.location);
+        setStartTime(nowEvent.startTime);
+        setEndTime(nowEvent.endTime);
+        setCreatedAt(new Date(nowEvent.createdAt));
+        setGroup(nowEvent.group);
+        console.log('nowEvent', nowEvent);
+        setNowEvent(nowEvent);
+      }
     };
     fetchEvent();
   }, [appoid]);
@@ -97,7 +99,7 @@ const Calendar = () => {
         location: location as string,
         startTime: startTime as string,
         endTime: endTime as string,
-        createdAt: createdAt as Date,
+        createdAt: createdAt.toString() as string,
         group: [...group, username],
       },
     });

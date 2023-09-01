@@ -44,7 +44,7 @@ const Home = () => {
           location,
           startTime,
           endTime,
-          createdAt: new Date(),
+          createdAt: new Date().toISOString(),
           group: [],
         },
       })

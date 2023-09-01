@@ -8,11 +8,11 @@ export type AdditionalRequest = {
 };
 
 export default defineHooks(() => ({
-  preHandler: async (req, res) => {
+  preHandler: async (req) => {
     const user = await getUserModel(req.cookies.session);
 
     if (!user) {
-      req.user = null;
+      req.user = undefined;
       return;
     }
 

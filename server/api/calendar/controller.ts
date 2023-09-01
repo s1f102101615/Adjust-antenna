@@ -10,7 +10,7 @@ export default defineController(() => ({
   post: async ({ user, body }) => ({
     status: 200,
     body: await calendarUsecase.create(
-      user?.id ?? null,
+      user?.id ?? undefined,
       body.appoid,
       body.title,
       body.startDate,
