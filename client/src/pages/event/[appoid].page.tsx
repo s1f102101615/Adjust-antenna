@@ -72,7 +72,7 @@ const Event = () => {
       };
       saveEvent(JSON.stringify(newEvent));
       // nowEventの中身をuseStateにセットする
-      setId(nowEvent?.id);
+      setId(nowEvent?.id ?? '');
       setTitle(nowEvent?.title);
       setStartDate(nowEvent?.startDate);
       setEndDate(nowEvent?.endDate);

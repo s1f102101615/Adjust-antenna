@@ -40,7 +40,6 @@ export const AuthLoader = () => {
       router.pathname === pagesPath.login.$url().pathname && (await router.push(pagesPath.$url()));
     };
 
-
     user && redirectToHome();
   }, [router, isInitedAuth, user]);
 
