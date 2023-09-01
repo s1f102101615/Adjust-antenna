@@ -22,7 +22,7 @@ export const BasicHeader = ({ user }: { user: UserModel | null }) => {
   };
 
   const handleLogout = async () => {
-    if (confirm('Logout?')) await logout();
+    if (confirm('ログアウトしますか？')) await logout();
   };
   return (
     <div className={styles.container}>
