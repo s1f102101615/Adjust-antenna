@@ -45,9 +45,11 @@ const Mypage = () => {
   return (
     <>
       <BasicHeader user={user} />
+
       <div className={styles.siteup}>
         <div className={styles.mytitle}>{user.displayName}のマイページ</div>
       </div>
+
       <div className={styles.mylist}>
         <div className={styles.label}>イベント履歴</div>
         {involved.reverse().map((item) => (

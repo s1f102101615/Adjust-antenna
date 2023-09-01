@@ -113,12 +113,13 @@ const Calendar = () => {
       endDate: endDate as string,
       endTime: endTime as string,
     };
+
     saveEvent(JSON.stringify(newEvent));
     // 指定されたカレンダーによって処理を分ける
     if (calendarType === 'google') {
-      // window.location.href = `webcal://pocketcalendar.app/${encodedData}`;
+      window.location.href = `webcal://pocketcalendar.app/${encodedData}`;
     } else if (calendarType === 'apple') {
-      // window.location.href = `data:text/calendar;charset=utf-8,${encodedData}`;
+      window.location.href = `data:text/calendar;charset=utf-8,${encodedData}`;
     } else if (calendarType === 'outlook') {
       window.open(`data:text/calendar;charset=utf-8,${encodedData}`);
     }
