@@ -15,6 +15,19 @@
   margin: 0 auto;
 }
 
+@media (max-width: 1387px) {
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 650px;
+    max-width: 960px;
+    height: 100%;
+    padding: 0 16px;
+    margin: 0 auto;
+  }
+}
+
 /* メインタイトル */
 .maintitle {
   align-items: center;
