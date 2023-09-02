@@ -24,6 +24,7 @@ const Home = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       const events = JSON.parse(localStorage.getItem('recentEvents') as string);
+      if (events === null) return;
       setEvents(events.slice(-2).reverse());
     };
     fetchEvents();
@@ -69,6 +70,13 @@ const Home = () => {
     event.preventDefault();
     // Handle form submission here
   };
+
+  const isFormValid =
+    title.trim() !== '' &&
+    startDate.trim() !== '' &&
+    endDate.trim() !== '' &&
+    startTime.trim() !== '' &&
+    endTime.trim() !== '';
 
   return (
     <>
@@ -153,7 +161,17 @@ const Home = () => {
                 />
               </div>
             </div>
-            <button className={styles.submitButton} type="submit" onClick={generateURL}>
+            <div>
+              <div className={styles.attention}>
+                ※タイトルと時間を入力しなければイベント生成は出来ません
+              </div>
+            </div>
+            <button
+              className={styles.submitButton}
+              type="submit"
+              onClick={generateURL}
+              disabled={!isFormValid}
+            >
               イ ベ ン ト 生 成
             </button>
           </form>
@@ -174,7 +192,7 @@ const Home = () => {
                   <div key={event.appoid}>
                     <div className={styles.eventTitle}>{event.title}</div>
                     <br />
-                    場所: {event.location}
+                    場所: {event.location === '' ? '未設定' : event.location}
                     <br />
                     {formatDate(event.startDate)}
                     {event.startTime} - {formatDate(event.endDate)}
