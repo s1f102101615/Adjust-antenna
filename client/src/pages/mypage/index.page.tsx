@@ -7,6 +7,7 @@ import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../../atoms/user';
 import styles from './index.module.css';
 
+// eslint-disable-next-line complexity
 const Mypage = () => {
   const [user] = useAtom(userAtom);
   const [settings, setSettings] = useState<
@@ -44,7 +45,7 @@ const Mypage = () => {
   };
 
   const handleSettingsClick = (
-    setting: 'profile' | 'email' | 'password' | 'email-reception' | 'withdrawal'
+    setting: 'mypage' | 'profile' | 'email' | 'password' | 'email-reception' | 'withdrawal'
   ) => {
     setSettings(setting);
   };
@@ -111,7 +112,7 @@ const Mypage = () => {
                   <br />
                   変更する場合は『メールアドレスを変更する』をクリックしてください。
                   <div className={styles.mailadress}>
-                    <div style={{ backgroundColor: 'gray', width: '10px' }}></div>
+                    <div style={{ backgroundColor: 'gray', width: '10px' }} />
                     {user.email}
                   </div>
                 </div>
