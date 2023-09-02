@@ -138,3 +138,66 @@
   font-size: 16px;
   background-color: #f1f1f1;
 }
+
+.passwordbox {
+  width: 896px;
+  height: 300px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.passworddetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.password {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}
+
+.mailbox {
+  width: 896px;
+  height: 300px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.maildetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.mail {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}
+
+.withdrawalbox {
+  width: 896px;
+  height: auto;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.withdrawaldetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.withdrawal {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}

@@ -118,11 +118,80 @@ const Mypage = () => {
               </div>
             </>
           )}
-          {settings === 'password' && <div>{/* パスワード設定のコンポーネントを表示 */}</div>}
-          {settings === 'email-reception' && (
-            <div>{/* メール受信設定のコンポーネントを表示 */}</div>
+          {settings === 'password' && (
+            <>
+              <div className={styles.passwordbox}>
+                <div className={styles.passworddetail}>
+                  パスワードを変更します。
+                  <br />
+                  新しく設定したいパスワードを入力してください。
+                  <div className={styles.password}>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>パスワード</div>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>
+                      パスワード(確認)
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
           )}
-          {settings === 'withdrawal' && <div>{/* 退会設定のコンポーネントを表示 */}</div>}
+          {settings === 'email-reception' && (
+            <>
+              <div className={styles.mailbox}>
+                <div className={styles.maildetail}>
+                  連絡あんてなからのお知らせメール受信が以下のように設定されています。
+                  <br />
+                  変更する場合は『設定を変更する』をクリックしてください。
+                  <div className={styles.mail}>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>
+                      新機能などのお知らせ
+                    </div>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>イベントの通知</div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+          {settings === 'withdrawal' && (
+            <>
+              <div className={styles.withdrawalbox}>
+                <div className={styles.withdrawaldetail}>
+                  会員サービスはお金がかかりません。
+                  <br />
+                  退会すると便利な機能が利用できなくなります。
+                  <div className={styles.withdrawal}>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                      退会したらどうなるかを書く
+                      <br />
+                    </div>
+                    <div style={{ backgroundColor: '#f1f1f1', width: '300px' }}>退会する</div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
 
           <div className={styles.settings}>
             <div className={styles.label1}>設定</div>
