@@ -1,5 +1,5 @@
 .eventCards {
-  width: 40%;
+  width: 85%;
   padding: 15px;
   margin-bottom: 10px;
   background-color: #fff;
@@ -9,16 +9,38 @@
 
 .title {
   font-size: 18px;
+  font-weight: bold;
 }
 
 .mylist {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
+  background-color: #f5f5f5;
+}
+
+.cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1000px;
   padding-top: 30px;
   background-color: #f5f5f5;
+}
+
+.pasent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 55%;
+}
+
+.contenar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
 
 .mytitle {
@@ -39,9 +61,143 @@
 }
 
 .label {
-  display: block;
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 15px;
+  margin-left: 100px;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.label1 {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 15px;
   font-size: 22px;
   font-weight: bold;
+  background-color: #f5f5f5;
   border-bottom: 2px solid #ccc;
+}
+
+.settings {
+  width: 35%;
+  height: 100%;
+}
+
+.setlabel {
+  width: 100%;
+  margin-bottom: 15px;
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #f5f5f5;
+}
+
+.emailbox {
+  width: 896px;
+  height: 250px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.emaildetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.mailadress {
+  width: 70%;
+  margin: 15px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}
+
+.profilebox {
+  width: 896px;
+  height: 300px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.profiledetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.profile {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}
+
+.passwordbox {
+  width: 896px;
+  height: 300px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.passworddetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.password {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}
+
+.mailbox {
+  width: 896px;
+  height: 300px;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.maildetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.mail {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
+}
+
+.withdrawalbox {
+  width: 896px;
+  height: auto;
+  margin: 40px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.withdrawaldetail {
+  padding: 20px;
+  font-size: 16px;
+  color: #3a3a3a;
+}
+
+.withdrawal {
+  width: 70%;
+  margin: 25px;
+  font-size: 16px;
+  background-color: #f1f1f1;
 }
