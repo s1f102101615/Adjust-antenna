@@ -169,7 +169,7 @@ const Home = () => {
                 <Link
                   key={event.appoid}
                   className={styles.eventCard}
-                  href={`http://localhost:3000/event/${event.appoid}`}
+                  href={`/event/${event.appoid}`}
                 >
                   <div key={event.appoid}>
                     <div className={styles.eventTitle}>{event.title}</div>
@@ -185,7 +185,7 @@ const Home = () => {
               );
             })}
           </div>
-          <Link className={styles.oldlink} href="http://localhost:3000/involved">
+          <Link className={styles.oldlink} href="/involved">
             <div>{'>'}閲覧履歴をすべて見る</div>
           </Link>
         </div>
