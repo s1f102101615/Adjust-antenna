@@ -259,3 +259,32 @@
   font-size: 1.5em;
   color: black;
 }
+
+@media (max-width: 902px) {
+  .urlinput {
+    width: 100%;
+  }
+
+  .urlarea {
+    width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .timearound {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .container {
+    width: 226px;
+  }
+
+  .to {
+    display: none;
+  }
+}

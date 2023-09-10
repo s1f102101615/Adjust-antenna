@@ -71,8 +71,13 @@
   color: #047400;
 }
 
-@media (max-width: 516px) {
+@media (max-width: 550px) {
   .eventCards {
     width: calc(100% - 20px);
+  }
+
+  .header {
+    width: 100%;
+    padding-left: 10px;
   }
 }
