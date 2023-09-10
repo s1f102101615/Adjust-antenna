@@ -65,9 +65,25 @@ const Home = () => {
     return formattedDate;
   };
 
+  // eslint-disable-next-line complexity
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    if (!title || !startDate || !startTime || !endDate || !endTime) {
+      alert('タイトルと時間は必須です。');
+      event.preventDefault();
+      return;
+    }
+    if (new Date(endDate) < new Date(startDate)) {
+      alert('終了日は開始日以降の日付を選択してください。');
+      event.preventDefault();
+      return;
+    }
+    if (startDate === endDate && startTime > endTime) {
+      alert('終了時間は開始時間以降の時間を選択してください。');
+      event.preventDefault();
+      return;
+    }
     event.preventDefault();
-    // Handle form submission here
+    generateURL();
   };
 
   return (
@@ -75,6 +91,7 @@ const Home = () => {
       <BasicHeader user={user} />
       <div className={styles.upinput}>
         <div className={styles.container}>
+          {/* widthが720以下になったら文字を変える */}
           <div className={styles.labelname}>すぐ作れる！カンタン連絡共有</div>
           <form onSubmit={handleSubmit}>
             {/* 各フォームグループをまとめてスタイリッシュに表示 */}
@@ -153,7 +170,7 @@ const Home = () => {
                 />
               </div>
             </div>
-            <button className={styles.submitButton} type="submit" onClick={generateURL}>
+            <button className={styles.submitButton} type="submit">
               イ ベ ン ト 生 成
             </button>
           </form>
