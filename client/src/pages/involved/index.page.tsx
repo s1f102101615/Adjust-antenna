@@ -9,6 +9,8 @@ const Involved = () => {
   const [user] = useAtom(userAtom);
   const [involved, setInvolved] = useState<string[]>([]);
 
+  const isMobile = window.innerWidth <= 448;
+
   // localsotrageから取得
   useEffect(() => {
     const fetchInvolved = async () => {
@@ -31,12 +33,33 @@ const Involved = () => {
       <div className={styles.headerup}>
         <div className={styles.header}>
           <div className={styles.flag}>
-            <a href={`http://localhost:3000`} className={styles.link}>
-              ホームページ
-            </a>{' '}
-            -&gt; 最近このブラウザで関与したイベント
+            {isMobile ? (
+              <p>
+                <a href={`http://localhost:3000`} className={styles.link}>
+                  ホームページ
+                </a>{' '}
+                <br />
+                -&gt; 最近このブラウザで関与したイベント
+              </p>
+            ) : (
+              <text>
+                <a href={`http://localhost:3000`} className={styles.link}>
+                  ホームページ
+                </a>{' '}
+                -&gt; 最近このブラウザで関与したイベント
+              </text>
+            )}
           </div>
-          <div className={styles.uptitle}>最近このブラウザで関与したイベント</div>
+
+          {isMobile ? (
+            <div className={styles.uptitle}>
+              最近このブラウザで
+              <br />
+              関与したイベント
+            </div>
+          ) : (
+            <div className={styles.uptitle}>最近このブラウザで関与したイベント</div>
+          )}
         </div>
       </div>
       <div className={styles.involved}>

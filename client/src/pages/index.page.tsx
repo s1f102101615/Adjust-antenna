@@ -9,7 +9,6 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
-
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -17,6 +16,8 @@ const Home = () => {
   const [location, setLocation] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+
+  const isMobile = window.innerWidth <= 448; // 画面幅が720px以下かどうかを判定
 
   //仮イベントデータ
   const [events, setEvents] = useState<string[]>([]);
@@ -66,9 +67,25 @@ const Home = () => {
     return formattedDate;
   };
 
+  // eslint-disable-next-line complexity
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    if (!title || !startDate || !startTime || !endDate || !endTime) {
+      alert('タイトルと時間は必須です。');
+      event.preventDefault();
+      return;
+    }
+    if (new Date(endDate) < new Date(startDate)) {
+      alert('終了日は開始日以降の日付を選択してください。');
+      event.preventDefault();
+      return;
+    }
+    if (startDate === endDate && startTime > endTime) {
+      alert('終了時間は開始時間以降の時間を選択してください。');
+      event.preventDefault();
+      return;
+    }
     event.preventDefault();
-    // Handle form submission here
+    generateURL();
   };
 
   const isFormValid =
@@ -83,7 +100,16 @@ const Home = () => {
       <BasicHeader user={user} />
       <div className={styles.upinput}>
         <div className={styles.container}>
-          <div className={styles.labelname}>すぐ作れる！カンタン連絡共有</div>
+          {/* widthが720以下になったら文字を変える */}
+          {isMobile ? (
+            <div className={styles.labelname}>
+              すぐ作れる！
+              <br />
+              カンタン連絡共有
+            </div>
+          ) : (
+            <div className={styles.labelname}>すぐ作れる！カンタン連絡共有</div>
+          )}
           <form onSubmit={handleSubmit}>
             {/* 各フォームグループをまとめてスタイリッシュに表示 */}
             <div className={styles.inputer}>
@@ -187,7 +213,7 @@ const Home = () => {
                 <Link
                   key={event.appoid}
                   className={styles.eventCard}
-                  href={`http://localhost:3000/event/${event.appoid}`}
+                  href={`/event/${event.appoid}`}
                 >
                   <div key={event.appoid}>
                     <div className={styles.eventTitle}>{event.title}</div>
@@ -203,7 +229,7 @@ const Home = () => {
               );
             })}
           </div>
-          <Link className={styles.oldlink} href="http://localhost:3000/involved">
+          <Link className={styles.oldlink} href="/involved">
             <div>{'>'}閲覧履歴をすべて見る</div>
           </Link>
         </div>
