@@ -194,7 +194,7 @@ const Calendar = () => {
               <button className={styles.buttonback} onClick={handleBackClick}>
                 イベントページへ
               </button>
-              <button className={styles.button} onClick={handleButtonClick}>
+              <button className={styles.button} onClick={handleButtonClick} disabled={!username}>
                 追加する
               </button>
             </div>
