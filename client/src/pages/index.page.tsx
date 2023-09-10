@@ -9,7 +9,6 @@ import styles from './index.module.css';
 
 const Home = () => {
   const [user] = useAtom(userAtom);
-
   const [title, setTitle] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -17,6 +16,8 @@ const Home = () => {
   const [location, setLocation] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
+
+  const isMobile = window.innerWidth <= 448; // 画面幅が720px以下かどうかを判定
 
   //仮イベントデータ
   const [events, setEvents] = useState<string[]>([]);
@@ -92,7 +93,15 @@ const Home = () => {
       <div className={styles.upinput}>
         <div className={styles.container}>
           {/* widthが720以下になったら文字を変える */}
-          <div className={styles.labelname}>すぐ作れる！カンタン連絡共有</div>
+          {isMobile ? (
+            <div className={styles.labelname}>
+              すぐ作れる！
+              <br />
+              カンタン連絡共有
+            </div>
+          ) : (
+            <div className={styles.labelname}>すぐ作れる！カンタン連絡共有</div>
+          )}
           <form onSubmit={handleSubmit}>
             {/* 各フォームグループをまとめてスタイリッシュに表示 */}
             <div className={styles.inputer}>

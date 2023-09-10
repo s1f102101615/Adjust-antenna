@@ -70,3 +70,9 @@
 .link {
   color: #047400;
 }
+
+@media (max-width: 516px) {
+  .eventCards {
+    width: calc(100% - 20px);
+  }
+}
