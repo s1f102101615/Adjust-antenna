@@ -74,7 +74,7 @@ const Involved = () => {
               <div key={eventObj.appoid}>
                 <div className={styles.title}>{eventObj.title}</div>
                 <br />
-                場所: {eventObj.location}
+                場所: {eventObj.location === '' ? '未設定' : eventObj.location}
                 <br />
                 {formatDate(eventObj.startDate)}
                 {eventObj.startTime} - {formatDate(eventObj.endDate)}

@@ -31,10 +31,11 @@ const Event = () => {
       return;
     }
     const events = JSON.parse(localStorage.getItem('recentEvents') as string);
-    // 同じイベントがある場合、保存しない
+    // 同じイベントがある場合、それを取り除き先頭にpushする
     for (let i = 0; i < events.length; i++) {
-      if (events[i] === eventData) {
-        return;
+      const event = JSON.parse(events[i]);
+      if (event.appoid === appoid) {
+        events.splice(i, 1);
       }
     }
     events.push(eventData);
@@ -47,6 +48,7 @@ const Event = () => {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line complexity
     const fetchEvent = async () => {
       if (appoid === undefined) {
         return;
@@ -81,11 +83,12 @@ const Event = () => {
       setStartTime(nowEvent?.startTime);
       setEndTime(nowEvent?.endTime);
       setGroup(nowEvent?.group);
+      // urlareaのロケーションと詳細が空の場合、その部分に未設定と表示する
       setUrlarea(
         `タイトル：${nowEvent?.title}\n開始：${nowEvent?.startDate} ${nowEvent?.startTime}\n終了：${
           nowEvent?.endDate
-        } ${nowEvent?.endTime}\n場所：${nowEvent?.location}\n詳細：${
-          nowEvent?.details
+        } ${nowEvent?.endTime}\n場所：${nowEvent?.location || '未設定'}\n詳細：${
+          nowEvent?.details || '未設定'
         }\nURL：${`http://localhost:3000/calendar/${appoid}`}`
       );
       setUrl(`http://localhost:3000/calendar/${appoid}`);
@@ -142,10 +145,19 @@ const Event = () => {
           </div>
           <div className={styles.locationaround}>
             <div className={styles.locationdetail}>場所</div>
-            <div className={styles.location}>{location}</div>
+            {location === '' ? (
+              <div className={styles.locationunknown}>未設定</div>
+            ) : (
+              <div className={styles.location}>{location}</div>
+            )}
           </div>
           <div className={styles.detailaround}>
             <div className={styles.detailofdetail}>イベントの詳細</div>
+            {details === '' ? (
+              <div className={styles.detailunknown}>未設定</div>
+            ) : (
+              <div className={styles.detail}>{details}</div>
+            )}
             <div className={styles.detail}>{details}</div>
           </div>
           <div className={styles.grouparound}>
