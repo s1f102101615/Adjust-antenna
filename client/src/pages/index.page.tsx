@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { userAtom } from '../atoms/user';
 import styles from './index.module.css';
 
+// eslint-disable-next-line complexity
 const Home = () => {
   const [user] = useAtom(userAtom);
   const [title, setTitle] = useState('');
