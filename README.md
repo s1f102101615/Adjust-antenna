@@ -1,69 +1,20 @@
-# Next frourio starter
+# 連絡あんてな
+連絡あんてなはログイン不要で連絡作成、共有
 
-フロントエンドは src ディレクトリの [Next.js](https://nextjs.org/) 、バックエンドは server ディレクトリの [frourio](https://frourio.com/) で構築された TypeScript で一気通貫開発が可能なモノレポサービス
+* * *
+### バージョン
+![言語バージョン](https://img.shields.io/badge/TypeScript-5.1.6-blue)
+![言語バージョン](https://img.shields.io/badge/React-18.2.0-blue)
+![言語バージョン](https://img.shields.io/badge/Fastify-4.21.0-blue)
+![言語バージョン](https://img.shields.io/badge/Prisma-5.1.1-blue)
+![言語バージョン](https://img.shields.io/badge/Frourio-1.0.0-blue)
+![言語バージョン](https://img.shields.io/badge/Notios-0.4.1-blue)
+![言語バージョン](https://img.shields.io/badge/Firebase-10.1.0-blue)
+![言語バージョン](https://img.shields.io/badge/Next-13.4.13-blue)
 
-最新のコミットによるデモ - https://solufa.github.io/next-frourio-starter/
+## 利用方法
+### メインページで適切な情報を入力すると約束を作成することができます。
+![Appo1](https://github.com/s1f102101615/Adjust-antenna/assets/85666847/d8675797-ec00-4c00-b0ee-4704fc7b3484)
+### 作成画面に遷移するので生成されたURLを参加者に送ってください、<br />URLにアクセスして名前を決めてカレンダーに追加されると参加者の欄に名前が追加されます。
 
-## 開発手順
-
-### Node.js のインストール
-
-ローカルマシンに直接インストールする
-
-https://nodejs.org/ja/ の左ボタン、LTS をダウンロードしてインストール
-
-### リポジトリのクローンと npm モジュールのインストール
-
-ルートとフロントとバックエンドそれぞれに package.json があるので 3 回インストールが必要
-
-```sh
-$ npm i
-$ npm i --prefix client
-$ npm i --prefix server
-```
-
-### 環境変数ファイルの作成
-
-```sh
-$ cp client/.env.example client/.env
-$ cp server/.env.example server/.env
-$ cp docker/dev/.env.example docker/dev/.env
-$ cp server/prisma/.env.example server/prisma/.env
-```
-
-### ミドルウェアのセットアップ
-
-```sh
-$ docker-compose up -d
-```
-
-### 開発サーバー起動
-
-次回以降は以下のコマンドだけで開発できる
-
-```sh
-$ npm run notios
-```
-
-Web ブラウザで http://localhost:3000 を開く
-
-開発時のターミナル表示は [notios](https://github.com/frouriojs/notios) で制御している
-
-[Node.js モノレポ開発のターミナルログ混雑解消のための新作 CLI ツール notios](https://zenn.dev/luma/articles/nodejs-new-cli-tool-notios)
-
-閉じるときは `Ctrl + C` を 2 回連続で入力
-
-#### Firebase Emulator
-
-http://localhost:4000/auth
-
-#### MinIO Console
-
-http://localhost:9001/
-
-#### PostgreSQL UI
-
-```sh
-$ cd server
-$ npx prisma studio
-```
+![Appo2](https://github.com/s1f102101615/Adjust-antenna/assets/85666847/94a27559-0d49-443c-9373-e62df83ec8a0)
