@@ -235,6 +235,37 @@ const Home = () => {
           </Link>
         </div>
       </div>
+      {/* <div className={styles.old2}>
+        <div className={styles.oldmain}>
+          <div className={styles.oldtitle}>最近このブラウザで関与したイベント</div>
+          <div className={styles.oldevent}>
+            {events.map((eventString) => {
+              const event = JSON.parse(eventString);
+              return (
+                <Link
+                  key={event.appoid}
+                  className={styles.eventCard}
+                  href={`/event/${event.appoid}`}
+                >
+                  <div key={event.appoid}>
+                    <div className={styles.eventTitle}>{event.title}</div>
+                    <br />
+                    場所: {event.location === '' ? '未設定' : event.location}
+                    <br />
+                    {formatDate(event.startDate)}
+                    {event.startTime} - {formatDate(event.endDate)}
+                    {event.endTime}
+                    <br />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+          <Link className={styles.oldlink} href="/involved">
+            <div>{'>'}閲覧履歴をすべて見る</div>
+          </Link>
+        </div>
+      </div> */}
     </>
   );
 };
