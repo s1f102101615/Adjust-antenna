@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
