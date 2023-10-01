@@ -11,4 +11,5 @@ module.exports = {
   transpilePackages: ['api'],
   eslint: { ignoreDuringBuilds: true },
   typescript: { ignoreBuildErrors: true },
+  distDir: 'client/.next',
 };
