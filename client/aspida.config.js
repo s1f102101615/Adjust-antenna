@@ -1,5 +1,6 @@
 // require('dotenv').config({ path: '../server/.env' });
 
 module.exports = {
-  baseURL: `https://antenna-ipxq.onrender.com/api`,
+  input: 'https://antenna-ipxq.onrender.com/',
+  baseURL: `https://antenna-ipxq.onrender.com/`,
 };
