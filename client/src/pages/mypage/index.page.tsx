@@ -71,7 +71,7 @@ const Mypage = () => {
                   <Link
                     key={item?.appoid}
                     className={styles.eventCards}
-                    href={`http://localhost:3000/event/${item?.appoid}`}
+                    href={`https://adjust-antenna.vercel.app/event/${item?.appoid}`}
                   >
                     <div key={item?.appoid}>
                       <div className={styles.title}>{item?.title}</div>
