@@ -89,9 +89,9 @@ const Event = () => {
           nowEvent?.endDate
         } ${nowEvent?.endTime}\n場所：${nowEvent?.location || '未設定'}\n詳細：${
           nowEvent?.details || '未設定'
-        }\nURL：${`http://localhost:3000/calendar/${appoid}`}`
+        }\nURL：${`https://adjust-antenna.vercel.app/calendar/${appoid}`}`
       );
-      setUrl(`http://localhost:3000/calendar/${appoid}`);
+      setUrl(`https://adjust-antenna.vercel.app/calendar/${appoid}`);
     };
     fetchEvent();
     // eslint-disable-next-line react-hooks/exhaustive-deps

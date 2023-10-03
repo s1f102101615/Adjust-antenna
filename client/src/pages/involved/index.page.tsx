@@ -35,7 +35,7 @@ const Involved = () => {
           <div className={styles.flag}>
             {isMobile ? (
               <p>
-                <a href={`http://localhost:3000`} className={styles.link}>
+                <a href={`https://adjust-antenna.vercel.app`} className={styles.link}>
                   ホームページ
                 </a>{' '}
                 <br />
@@ -43,7 +43,7 @@ const Involved = () => {
               </p>
             ) : (
               <text>
-                <a href={`http://localhost:3000`} className={styles.link}>
+                <a href={`https://adjust-antenna.vercel.app`} className={styles.link}>
                   ホームページ
                 </a>{' '}
                 -&gt; 最近このブラウザで関与したイベント
@@ -69,7 +69,7 @@ const Involved = () => {
             <Link
               key={eventObj.appoid}
               className={styles.eventCards}
-              href={`http://localhost:3000/event/${eventObj.appoid}`}
+              href={`https://adjust-antenna.vercel.app/event/${eventObj.appoid}`}
             >
               <div key={eventObj.appoid}>
                 <div className={styles.title}>{eventObj.title}</div>
