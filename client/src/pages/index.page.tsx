@@ -57,7 +57,7 @@ const Home = () => {
         if (user !== null) {
           await apiClient.append.post({ body: { appoid: randomId as string } });
         }
-        window.location.href = `https://adjust-antenna.vercel.app/event/${randomId}`;
+        window.location.href = `https://adjust-antenna.vercel.app/event/${randomId}/`;
       });
     return;
   };
