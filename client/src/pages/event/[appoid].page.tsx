@@ -1,4 +1,5 @@
 import { useAtom } from 'jotai';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { BasicHeader } from 'src/pages/@components/BasicHeader/BasicHeader';
@@ -89,9 +90,9 @@ const Event = () => {
           nowEvent?.endDate
         } ${nowEvent?.endTime}\n場所：${nowEvent?.location || '未設定'}\n詳細：${
           nowEvent?.details || '未設定'
-        }\nURL：${`https://adjust-antenna.vercel.app/calendar/${appoid}`}`
+        }\nURL：${`https://adjust-antenna.vercel.app/calendar/${appoid}/`}`
       );
-      setUrl(`https://adjust-antenna.vercel.app/calendar/${appoid}`);
+      setUrl(`https://adjust-antenna.vercel.app/calendar/${appoid}/`);
     };
     fetchEvent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -179,9 +180,9 @@ const Event = () => {
           </button>
         </div>
         {/* イベントに参加するボタン */}
-        <a href={`${url}`} className={styles.btn}>
+        <Link href={`${url}/`} key={appoid as string} className={styles.btn}>
           <div className={styles.btntext}>イベントに参加する&gt;</div>
-        </a>
+        </Link>
         <div className={styles.urlmessagedetail}>URL付きメッセージ</div>
         <div>
           <textarea className={styles.urlarea} value={urlarea} readOnly />
