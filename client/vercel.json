@@ -1,0 +1,8 @@
+{
+  "routes": {
+    "/event/:appoid": {
+      "src": "/event/[appoid].js",
+      "dest": "/event/[appoid]"
+    }
+  }
+}
