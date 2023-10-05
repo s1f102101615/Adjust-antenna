@@ -7,7 +7,7 @@ import { apiClient } from 'src/utils/apiClient';
 import { userAtom } from '../../atoms/user';
 import styles from './index.module.css';
 
-const Event = ({ match }) => {
+const Event = () => {
   const router = useRouter();
   const [user] = useAtom(userAtom);
   const [title, setTitle] = useState('');
@@ -22,7 +22,7 @@ const Event = ({ match }) => {
   const [group, setGroup] = useState<string[]>([]);
   const [id, setId] = useState('');
 
-  const { appoid } = match.params;
+  const { appoid } = router.query;
 
   function saveEvent(eventData: string) {
     if (localStorage.getItem('recentEvents') === null) {
