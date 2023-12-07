@@ -4,5 +4,22 @@
       "src": "/event/[appoid].js",
       "dest": "/event/[appoid]"
     }
-  }
+  },
+  "rewrites": [
+    {
+      "source": "/event/:appoid",
+      "destination": "/event/[appoid]"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/event/:appoid",
+      "headers": [
+        {
+          "key": "x-custom-header",
+          "value": "my custom header value"
+        }
+      ]
+    }
+  ]
 }

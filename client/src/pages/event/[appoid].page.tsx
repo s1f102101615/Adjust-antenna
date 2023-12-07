@@ -196,3 +196,47 @@ const Event = () => {
 };
 
 export default Event;
+
+export async function getStaticPaths() {
+  // context パラメータを使って appoid を取得
+  const { params } = context;
+
+  // params.appoid を使用して paths を構築
+  const paths = [
+    {
+      params: { appoid: params.appoid },
+    },
+  ];
+
+  return { paths, fallback: false };
+}
+
+// eslint-disable-next-line complexity
+export async function getStaticProps({ params }) {
+  // params.appoid を使用してデータを取得するロジックを実装
+  const appoid = params.appoid;
+  const eventData = await apiClient.calendar.get({ query: { appoid: appoid as string } });
+  const newEvent = {
+    appoid: (eventData.body?.appoid as string) || null,
+    title: (eventData.body?.title as string) || null,
+    location: (eventData.body?.location as string) || null,
+    startDate: (eventData.body?.startDate as string) || null,
+    startTime: (eventData.body?.startTime as string) || null,
+    endDate: (eventData.body?.endDate as string) || null,
+    endTime: (eventData.body?.endTime as string) || null,
+  };
+  if (eventData === null) {
+    const error = null;
+    return {
+      props: {
+        error,
+      },
+    };
+  }
+
+  return {
+    props: {
+      newEvent,
+    },
+  };
+}
